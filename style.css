@@ -1,13 +1,26 @@
 body{
-margin: 1rem;
+  margin: 1rem;
+  padding-top: 50px;
 }
-.navbar{
-    display: flex;
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  padding: 12px 24px;
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  border: 1px solid #e6e6e6;
+  z-index: 1000;
 }
 
 .icon{
     border-radius: 50%;
-    background-color: #5c5b5b;
+    background-color: #787676;
     display: flex;         
     align-items: center;
     justify-content: center;
@@ -20,7 +33,7 @@ margin: 1rem;
 
 #geo-icon{
     font-size: 22px;
-    color: #5c5b5b;
+    color: #787676;
     margin-right: 0.2rem;
 }
 
@@ -37,7 +50,7 @@ margin: 1rem;
 .search-bar {
   display: flex;
   align-items: center;
-  background: #7f7e7e;      
+  background: #9f9e9e;      
   border-radius: 10px;        
   padding: 8px 12px;
   width: 400px; 
@@ -141,4 +154,178 @@ margin: 1rem;
 .profile-picture{
     margin-left: 1rem;
     display: flex;
+}
+
+.dashboard {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+.weather-wrapper {
+  display: flex;
+  gap: 20px;
+}
+
+.temp-card {
+  flex: 1 1 250px;
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.forecast {
+  flex: 2 1 400px;
+  display: flex;
+  gap: 10px;
+}
+
+.forecast .day {
+  flex: 1;
+  text-align: center;
+  background-color: #e3f2fd;
+  border-radius: 8px;
+  padding: 10px 0;
+}
+
+.rain-chart, .overview, .explore, .other-cities {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.overview {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 10px;
+}
+
+.overview .card {
+  background: #e3f2fd;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.explore img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.explore button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: #29b6f6;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.other-cities .city {
+  margin: 8px 0;
+  padding: 10px;
+  background: #f0f8ff;
+  border-radius: 8px;
+}
+
+.forecast-toggle {
+  grid-column: span 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  padding: 15px 24px;
+  border-radius: 16px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  border: 1px solid #e6e6e6;
+}
+
+.forecast-toggle .tabs button:hover {
+  color: #29b6f6;
+}
+
+.forecast-toggle .section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.forecast-toggle .tabs {
+  display: flex;
+  gap: 15px;
+}
+
+.forecast-toggle .tabs button {
+  background: transparent;
+  border: none;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.2s ease;
+}
+
+.forecast-toggle .tabs button.active {
+  color: #000;
+  font-weight: 600;
+  border-bottom: 2px solid #29b6f6;
+  padding-bottom: 3px;
+}
+
+.switch-wrapper {
+  position: relative;
+}
+
+.forecast-switch {
+  position: relative;
+  display: inline-block;
+  width: 140px;
+  height: 32px;
+  background: #f0f0f0;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.forecast-switch input {
+  display: none;
+}
+
+.forecast-switch .forecast-slider {
+  display: flex;
+  width: 200%;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+.forecast-switch .on,
+.forecast-switch .off {
+  flex: 1;
+  text-align: center;
+  line-height: 32px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+}
+
+.forecast-switch input:checked + .forecast-slider {
+  transform: translateX(-50%);
+}
+
+.forecast-switch .on {
+  background: #d6ecfa;
+  color: #000;
+}
+
+.forecast-switch .off {
+  background: #f0f0f0;
+  color: #777;
+}
+
+.forecast-toggle .section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
 }

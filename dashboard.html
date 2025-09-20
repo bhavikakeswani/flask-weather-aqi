@@ -28,7 +28,7 @@
                 <input type="checkbox">
                 <span class="slider">
                     <i class="bi bi-brightness-high-fill sun"></i>
-                    <i class="bi bi-moon-fill moon"></i>        
+                    <i class="bi bi-moon-fill moon"></i>
                 </span>
             </label>
         </div>
@@ -36,5 +36,72 @@
             <img src="default.jpg" alt="default_img" id="profile-img">
         </div>
     </section>
+
+    <main class="dashboard">
+        <section class="forecast-toggle">
+            <div class="tabs">
+                <button id="today-btn" class="active">Today</button>
+                <button id="tomorrow-btn">Tomorrow</button>
+                <button id="weekly-btn">Next 7 days</button>
+            </div>
+            <div class="switch-wrapper">
+                <label class="forecast-switch">
+                    <input type="checkbox" id="toggle-forecast">
+                    <span class="forecast-slider">
+                        <span class="on">Forecast</span>
+                        <span class="off">Air Quality</span>
+                    </span>
+                </label>
+            </div>
+            <span class="section-title">Chance of Rain</span>
+        </section>
+
+        <section class="current-weather">
+            <div class="weather-wrapper">
+                <div class="temp-card">
+                    <h2>16°</h2>
+                    <p>Real Feel 18°</p>
+                    <p>Wind: NE 6.7km/h</p>
+                    <p>Pressure: 100MB</p>
+                    <p>Humidity: 51%</p>
+                    <p>Sunrise: 5:30AM | Sunset: 6:45PM</p>
+                </div>
+                <div class="forecast">
+                    <div class="day">Sat <span>10°</span></div>
+                    <div class="day">Sun <span>15°</span></div>
+                    <div class="day">Mon <span>11°</span></div>
+                    <div class="day">Tue <span>10°</span></div>
+                    <div class="day">Wed <span>12°</span></div>
+                    <div class="day">Thu <span>10°</span></div>
+                </div>
+                <div class="rain-chart">
+                    <h3>Chance of Rain</h3>
+                    <canvas id="rainChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="overview">
+            <div class="card">Wind Status <br> 7.5 km/h</div>
+            <div class="card">UV Index <br> 5.5</div>
+            <div class="card">Humidity <br> 84%</div>
+            <div class="card">Visibility <br> 4 km</div>
+        </section>
+
+        <section class="explore">
+            <img src="city.jpg" alt="city-view">
+            <button>Get Started</button>
+        </section>
+
+        <section class="other-cities">
+            <div class="city">Beijing - Cloudy</div>
+            <div class="city">California - Windy</div>
+            <div class="city">Dubai - Mostly Sunny</div>
+            <div class="city">Charlottetown - Snow Shower</div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
