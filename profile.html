@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | SkySQI</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="navbar">
+        <div class="icon">
+            <i class="bi bi-grid-fill"></i>
+        </div>
+        <div class="icon">
+            <i class="bi bi-bell-fill"></i>
+        </div>
+        <div class="location">
+            <i id="geo-icon" class="bi bi-geo-alt-fill"></i>
+            <span id="loc-text">Dhaka, Bangladesh</span>
+        </div>
+        <div class="search-bar">
+            <i class="bi bi-search"></i>
+            <input type="text" placeholder="Search City">
+        </div>
+        <div class="toggle">
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider">
+                    <i class="bi bi-brightness-high-fill sun"></i>
+                    <i class="bi bi-moon-fill moon"></i>
+                </span>
+            </label>
+        </div>
+        <div class="profile-picture">
+            <img src="default.jpg" alt="default_img" id="profile-img">
+        </div>
+    </section>
+
+    <main class="profile-container">
+        <h2>My Profile</h2>
+        
+        <section class="profile-card">
+            <img src="default.jpg" alt="User Avatar" class="profile-avatar">
+            <div class="profile-info">
+                <p><strong>Name:</strong> John Doe</p>
+                <p><strong>Email:</strong> johndoe@example.com</p>
+            </div>
+            <button class="btn-edit"><i class="bi bi-pencil-square"></i> Edit Info</button>
+        </section>
+
+        <section class="preferences">
+            <h3>Preferences</h3>
+            <form>
+                <label for="city">Default City:</label>
+                <input type="text" id="city" placeholder="Enter city name">
+
+                <label for="unit">Temperature Unit:</label>
+                <select id="unit">
+                    <option value="celsius">Celsius (°C)</option>
+                    <option value="fahrenheit">Fahrenheit (°F)</option>
+                </select>
+
+                <label for="theme">Theme:</label>
+                <select id="theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                </select>
+
+                <button type="submit" class="btn-save">Save Changes</button>
+            </form>
+        </section>
+
+        <section class="security">
+            <h3>Account Security</h3>
+            <form>
+                <label for="old-pass">Current Password:</label>
+                <input type="password" id="old-pass" placeholder="Enter current password">
+
+                <label for="new-pass">New Password:</label>
+                <input type="password" id="new-pass" placeholder="Enter new password">
+
+                <label for="confirm-pass">Confirm New Password:</label>
+                <input type="password" id="confirm-pass" placeholder="Confirm new password">
+
+                <button type="submit" class="btn-password">Update Password</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
