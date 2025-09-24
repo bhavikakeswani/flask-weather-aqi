@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings | SkySQI</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="navbar">
+        <div class="icon">
+            <i class="bi bi-grid-fill"></i>
+        </div>
+        <div class="icon">
+            <i class="bi bi-bell-fill"></i>
+        </div>
+        <div class="location">
+            <i id="geo-icon" class="bi bi-geo-alt-fill"></i>
+            <span id="loc-text">Dhaka, Bangladesh</span>
+        </div>
+        <div class="search-bar">
+            <i class="bi bi-search"></i>
+            <input type="text" placeholder="Search City">
+        </div>
+        <div class="toggle">
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider">
+                    <i class="bi bi-brightness-high-fill sun"></i>
+                    <i class="bi bi-moon-fill moon"></i>
+                </span>
+            </label>
+        </div>
+        <div class="profile-picture">
+            <img src="default.jpg" alt="default_img" id="profile-img">
+        </div>
+    </section>
+
+    <main class="settings-container">
+        <h2>Settings</h2>
+
+        <section class="settings-card">
+            <h3>App Preferences</h3>
+            <form>
+                <label for="language">Language:</label>
+                <select id="language">
+                    <option>English</option>
+                    <option>Hindi</option>
+                    <option>Bengali</option>
+                </select>
+
+                <label for="temp-unit">Temperature Unit:</label>
+                <select id="temp-unit">
+                    <option>°C (Celsius)</option>
+                    <option>°F (Fahrenheit)</option>
+                </select>
+
+                <label for="aqi-unit">AQI Standard:</label>
+                <select id="aqi-unit">
+                    <option>US AQI</option>
+                    <option>WHO Standard</option>
+                </select>
+            </form>
+        </section>
+
+        <section class="settings-card">
+            <h3>Display</h3>
+            <form>
+                <label for="theme">Theme:</label>
+                <select id="theme">
+                    <option>Light</option>
+                    <option>Dark</option>
+                    <option>Auto</option>
+                </select>
+
+                <label for="font-size">Font Size:</label>
+                <select id="font-size">
+                    <option>Small</option>
+                    <option selected>Medium</option>
+                    <option>Large</option>
+                </select>
+            </form>
+        </section>
+
+        <section class="settings-card">
+            <h3>Notifications</h3>
+            <form>
+                <label>
+                    <input type="checkbox" checked>
+                    Enable Weather Alerts
+                </label>
+
+                <label>
+                    <input type="checkbox">
+                    Enable AQI Alerts
+                </label>
+
+                <label for="aqi-threshold">AQI Alert Threshold:</label>
+                <input type="number" id="aqi-threshold" placeholder="e.g. 150">
+            </form>
+        </section>
+
+        <section class="settings-card">
+            <h3>Account</h3>
+            <div class="button-group">
+                <button class="btn-password"><i class="bi bi-key-fill"></i> Change Password</button>
+                <button class="btn-danger"><i class="bi bi-trash-fill"></i> Delete Account</button>
+                <button class="btn-logout"><i class="bi bi-box-arrow-right"></i> Logout</button>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
