@@ -608,3 +608,40 @@ body{
 .btn-logout:hover {
     background: #0288D1;
 }
+
+.about-container {
+  max-width: 900px;
+  margin: 6rem auto 2rem;
+  padding: 0 1.5rem;
+}
+
+.about-card {
+  background: #ffffff;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  border: 1px solid #e6e6e6;
+}
+
+.about-card h2, 
+.about-card h3 {
+  margin-bottom: 1rem;
+  color: #29b6f6;
+}
+
+.about-card p, 
+.about-card ul {
+  color: #333;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.about-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.about-card ul li {
+  margin: 0.5rem 0;
+}
