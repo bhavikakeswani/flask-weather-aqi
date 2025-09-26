@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkySQI - Weather & AQI</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <section class="navbar">
+        <div class="icon">
+            <i class="bi bi-grid-fill"></i>
+        </div>
+        <div class="icon">
+            <i class="bi bi-bell-fill"></i>
+        </div>
+        <div class="location">
+            <i id="geo-icon" class="bi bi-geo-alt-fill"></i>
+            <span id="loc-text">Dhaka, Bangladesh</span>
+        </div>
+        <div class="search-bar">
+            <i class="bi bi-search"></i>
+            <input type="text" placeholder="Search City">
+        </div>
+        <div class="toggle">
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider">
+                    <i class="bi bi-brightness-high-fill sun"></i>
+                    <i class="bi bi-moon-fill moon"></i>
+                </span>
+            </label>
+        </div>
+        <div class="profile-picture">
+            <img src="default.jpg" alt="default_img" id="profile-img">
+        </div>
+    </section>
+
+  <main class="landing">
+    <div class="hero">
+      <h1>Welcome to <span class="brand">SkySQI</span></h1>
+      <p>Get real-time weather updates and accurate air-quality insights for your city.</p>
+      <div class="hero-buttons">
+        <a href="/signin" class="btn-primary">Sign In</a>
+        <a href="/signup" class="btn-secondary">Create Account</a>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <img src="city.jpg" alt="City view">
+    </div>
+  </main>
+
+  <section class="features">
+    <div class="feature-card">
+      <i class="bi bi-cloud-drizzle-fill"></i>
+      <h3>Accurate Forecast</h3>
+      <p>Stay prepared with precise, real-time weather data for your area.</p>
+    </div>
+    <div class="feature-card">
+      <i class="bi bi-wind"></i>
+      <h3>Air Quality Insights</h3>
+      <p>Track AQI levels and get recommendations for healthier outdoor time.</p>
+    </div>
+    <div class="feature-card">
+      <i class="bi bi-map"></i>
+      <h3>Global Coverage</h3>
+      <p>Search for any city worldwide and get up-to-date local information.</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2025 SkySQI. Built for your weather & air-quality needs.</p>
+  </footer>
+
+</body>
+</html>
