@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5-Day Forecast | SkySQI</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <section class="navbar">
+    <div class="icon">
+      <i class="bi bi-cloud-sun-fill"></i>
+    </div>
+    <div class="location">
+      <i id="geo-icon" class="bi bi-geo-alt-fill"></i>
+      <span id="loc-text">Your City</span>
+    </div>
+    <div class="search-bar">
+      <i class="bi bi-search"></i>
+      <input type="text" placeholder="Search City">
+    </div>
+    <div class="toggle">
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider">
+          <i class="bi bi-brightness-high-fill sun"></i>
+          <i class="bi bi-moon-fill moon"></i>
+        </span>
+      </label>
+    </div>
+    <div class="profile-picture">
+      <img src="default.jpg" alt="default_img" id="profile-img">
+    </div>
+  </section>
+
+  <main class="forecast-container">
+    <h1 class="forecast-heading">5-Day Weather & AQI Forecast</h1>
+
+    <div class="forecast-grid">
+      <div class="forecast-card">
+        <h2>Mon</h2>
+        <i class="bi bi-cloud-sun-fill"></i>
+        <p>Temp: 28°C</p>
+        <p>AQI: 65 (Moderate)</p>
+      </div>
+
+      <div class="forecast-card">
+        <h2>Tue</h2>
+        <i class="bi bi-cloud-drizzle-fill"></i>
+        <p>Temp: 26°C</p>
+        <p>AQI: 70 (Moderate)</p>
+      </div>
+
+      <div class="forecast-card">
+        <h2>Wed</h2>
+        <i class="bi bi-brightness-high-fill"></i>
+        <p>Temp: 30°C</p>
+        <p>AQI: 55 (Good)</p>
+      </div>
+
+      <div class="forecast-card">
+        <h2>Thu</h2>
+        <i class="bi bi-cloudy-fill"></i>
+        <p>Temp: 27°C</p>
+        <p>AQI: 80 (Moderate)</p>
+      </div>
+
+      <div class="forecast-card">
+        <h2>Fri</h2>
+        <i class="bi bi-cloud-lightning-rain-fill"></i>
+        <p>Temp: 25°C</p>
+        <p>AQI: 90 (Moderate)</p>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>
