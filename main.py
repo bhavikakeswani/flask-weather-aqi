@@ -1,14 +1,20 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,request,flash,redirect,url_for
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import UserMixin
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from flask_login import UserMixin, login_user, LoginManager, current_user, logout_user, login_required
+from sqlalchemy.orm import Mapped, mapped_column
+from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import Boolean, Integer, String, DateTime
 
 app=Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///weather.db'
 db = SQLAlchemy(app)
+
+app.config['SECRET_KEY'] = 'your-secret-key'
+
+login_manager = LoginManager()
+login_manager.init_app(app)
 
 class User(db.Model, UserMixin):
     __tablename__ = "users"
@@ -34,6 +40,10 @@ class User(db.Model, UserMixin):
 
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
 
+@login_manager.user_loader
+def load_user(user_id):
+    return db.get_or_404(User, int(user_id))
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -50,9 +60,30 @@ def forecast():
 def login():
     return render_template('login.html')
 
-@app.route('/register')
+@app.route('/register',methods=['GET','POST'])
 def register():
-    return render_template('register.html')
+    if request.method=='POST':
+        name = request.form.get('username')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        confirm_password=request.form.get('confirm_password')
+
+        existing_user = db.session.execute(db.select(User).where(User.email == email)).scalar_one_or_none()
+        if existing_user:
+            flash("Email already registered. Please sign in.",'warning')
+            return redirect(url_for("login"))
+        
+        if confirm_password == password:
+            hashed_password = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
+            new_user = User(name=name, email=email, password=hashed_password)
+
+            db.session.add(new_user)
+            db.session.commit()
+            login_user(new_user)
+            return redirect(url_for('dashboard'))
+        else:
+            flash("Passwords don't match",'danger')
+    return redirect(url_for('register'))
 
 @app.route('/profile')
 def profile():
