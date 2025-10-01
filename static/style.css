@@ -889,3 +889,25 @@ body{
   color: #555;
   margin: 0.25rem 0;
 }
+
+.flash-message {
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.flash-message.warning {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.flash-message.danger {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.flash-message.success {
+  background-color: #d4edda;
+  color: #155724;
+}

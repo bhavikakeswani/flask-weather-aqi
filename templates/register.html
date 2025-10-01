@@ -11,7 +11,16 @@
   <section class="auth-container">
     <div class="auth-card">
       <h2>Create Account</h2>
-      <form action="/register" method="POST">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash-message {{ category }}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+      <form action="{{url_for('register')}}" method="POST">
         <div class="input-group">
           <i class="bi bi-person-fill"></i>
           <input type="text" name="username" placeholder="Username" required>
