@@ -720,30 +720,41 @@ body{
 }
 
 .landing {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 8rem 6%;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  padding: 10rem 6%; 
   gap: 2rem;
-  margin-top: 4rem;
+  margin-top: 0;
+  max-height: 300vh;
+  background: linear-gradient(
+    120deg,
+    #ffffff 0%,
+    #6dd5fa 50%,
+    #29b6f6 100%
+  );
 }
 
 .hero {
-  max-width: 500px;
+  position: relative;
+  max-width: 600px;
 }
 
 .hero h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
   color: #082f43;
   margin-bottom: 1rem;
 }
 
 .hero h1 .brand {
-  color: #29b6f6;
+  color: #146b94;
 }
 
 .hero p {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   color: #555;
   margin-bottom: 2rem;
   line-height: 1.6;
@@ -751,43 +762,39 @@ body{
 
 .hero-buttons {
   display: flex;
+  justify-content: center;
   gap: 1rem;
 }
 
 .btn-primary,
 .btn-secondary {
-  padding: 0.8rem 1.5rem;
-  font-size: 1rem;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: background 0.3s;
+  padding: 0.9rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 10px;
   font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s;
 }
 
 .btn-primary {
-  background: #29b6f6;
+  background: #1f90c4;
   color: #fff;
 }
 
 .btn-primary:hover {
-  background: #0288d1;
+  background: #1d83ba;
 }
 
 .btn-secondary {
-  background: transparent;
-  border: 2px solid #29b6f6;
-  color: #29b6f6;
+  background: #ffffff;
+  border: 2px solid #1f90c4;
+  color: #1f90c4;
 }
 
 .btn-secondary:hover {
-  background: #29b6f6;
+  background: #1d83ba;
+  border: 2px solid #1d83ba;
   color: #fff;
-}
-
-.hero-image img {
-  max-width: 450px;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
 }
 
 .features {
@@ -829,7 +836,7 @@ body{
   background: #082f43;
   color: #fff;
   text-align: center;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
 }
 
 .forecast-container {
