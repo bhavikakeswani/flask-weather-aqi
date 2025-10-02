@@ -49,10 +49,12 @@ def home():
     return render_template('index.html')
 
 @app.route('/dashboard')
+@login_required
 def dashboard():
     return render_template('dashboard.html')
 
 @app.route('/forecast')
+@login_required
 def forecast():
     return render_template('forecast.html')
 
@@ -100,18 +102,22 @@ def register():
     return render_template('register.html')
 
 @app.route('/profile')
+@login_required
 def profile():
     return render_template('profile.html')
 
 @app.route('/settings')
+@login_required
 def settings():
     return render_template('settings.html')
 
 @app.route('/about')
+@login_required
 def about():
     return render_template('about.html')
 
 @app.route('/contact')
+@login_required
 def contact():
     return render_template('contact.html')
 
