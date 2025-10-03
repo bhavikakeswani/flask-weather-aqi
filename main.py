@@ -101,6 +101,13 @@ def register():
             flash("Passwords don't match",'danger')
     return render_template('register.html')
 
+@app.route('/delete', methods=['POST'])
+@login_required
+def delete():
+    db.session.delete(current_user)
+    db.session.commit()
+    return redirect(url_for('login'))
+
 @app.route('/profile')
 @login_required
 def profile():
