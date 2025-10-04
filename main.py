@@ -108,6 +108,31 @@ def delete():
     db.session.commit()
     return redirect(url_for('login'))
 
+@app.route('/change_password', methods=['GET', 'POST'])
+@login_required
+def change_password():
+    if request.method == 'POST':
+        current_password = request.form.get('current_password')
+        new_password = request.form.get('new_password')
+        confirm_password = request.form.get('confirm_password')
+
+        if not check_password_hash(current_user.password, current_password):
+            flash("Current password is incorrect.", "danger")
+            return redirect(url_for('change_password'))
+
+        if new_password != confirm_password:
+            flash("New passwords do not match.", "warning")
+            return redirect(url_for('change_password'))
+
+        hashed_password = generate_password_hash(new_password, method='pbkdf2:sha256', salt_length=8)
+        current_user.password = hashed_password
+        db.session.commit()
+
+        flash("Your password has been updated successfully!", "success")
+        return redirect(url_for('dashboard'))
+
+    return render_template('change_password.html')
+
 @app.route('/profile')
 @login_required
 def profile():
