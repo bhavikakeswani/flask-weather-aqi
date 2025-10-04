@@ -101,11 +101,12 @@ def register():
             flash("Passwords don't match",'danger')
     return render_template('register.html')
 
-@app.route('/delete', methods=['POST'])
+@app.route('/delete')
 @login_required
 def delete():
     db.session.delete(current_user)
     db.session.commit()
+    logout_user()
     return redirect(url_for('login'))
 
 @app.route('/change_password', methods=['GET', 'POST'])
