@@ -3,46 +3,24 @@
 {% block title %}Forecast | SkySQI{% endblock %}
 
 {% block content %}
-
-  <main class="forecast-container">
+<main class="forecast-container">
     <h1 class="forecast-heading">5-Day Weather & AQI Forecast</h1>
 
     <div class="forecast-grid">
-      <div class="forecast-card">
-        <h2>Mon</h2>
-        <i class="bi bi-cloud-sun-fill"></i>
-        <p>Temp: 28°C</p>
-        <p>AQI: 65 (Moderate)</p>
-      </div>
-
-      <div class="forecast-card">
-        <h2>Tue</h2>
-        <i class="bi bi-cloud-drizzle-fill"></i>
-        <p>Temp: 26°C</p>
-        <p>AQI: 70 (Moderate)</p>
-      </div>
-
-      <div class="forecast-card">
-        <h2>Wed</h2>
-        <i class="bi bi-brightness-high-fill"></i>
-        <p>Temp: 30°C</p>
-        <p>AQI: 55 (Good)</p>
-      </div>
-
-      <div class="forecast-card">
-        <h2>Thu</h2>
-        <i class="bi bi-cloudy-fill"></i>
-        <p>Temp: 27°C</p>
-        <p>AQI: 80 (Moderate)</p>
-      </div>
-
-      <div class="forecast-card">
-        <h2>Fri</h2>
-        <i class="bi bi-cloud-lightning-rain-fill"></i>
-        <p>Temp: 25°C</p>
-        <p>AQI: 90 (Moderate)</p>
-      </div>
+        {% for date, entries in forecast.items() %}
+        <div class="forecast-card">
+            <h2>{{ date }}</h2> 
+            
+            {% set first_entry = entries[0] %}
+            <img src="http://openweathermap.org/img/wn/{{ first_entry.weather[0].icon }}.png" alt="Weather icon">
+            
+            <p>Temp: {{ first_entry.main.temp }}° {{ 'C' if current_user.temp_unit == 'Celsius' else 'F' }}</p>
+            
+            {% if first_entry.aqi %}
+            <p>AQI: {{ first_entry.aqi.value }} ({{ first_entry.aqi.category }})</p>
+            {% endif %}
+        </div>
+        {% endfor %}
     </div>
-  </main>
-
-  {% endblock %}
+</main>
+{% endblock %}
