@@ -57,7 +57,54 @@ def home():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template('dashboard.html')
+    city = current_user.default_city or "Delhi"
+    units = "metric" if current_user.temp_unit == "Celsius" else "imperial"
+
+    weather = get_weather(city, units)
+
+    other_city_names = ["Beijing", "California", "Dubai", "Charlottetown"]
+    other_cities_weather = []
+    for c in other_city_names:
+        data = get_weather(c)
+        if data:
+            other_cities_weather.append({
+                "name": c,
+                "description": data["weather"][0]["description"].title(),
+                "temp": data["main"]["temp"]
+            })
+
+    if weather and "coord" in weather:
+        lat = weather["coord"]["lat"]
+        lon = weather["coord"]["lon"]
+        uv_index = get_uv_index(lat, lon)
+    else:
+        uv_index = None
+
+    forecast_data = get_forecast(city, units)
+    weekly_forecast = []
+
+    city_image = get_city_image(city)
+
+    if forecast_data and "list" in forecast_data:
+        grouped = defaultdict(list)
+        for entry in forecast_data["list"]:
+            date_str = entry["dt_txt"].split(" ")[0]
+            grouped[date_str].append(entry)
+
+        for date, entries in grouped.items():
+            temps = [e["main"]["temp"] for e in entries]
+            weather_icon = entries[0]["weather"][0]["icon"]
+            weekly_forecast.append({
+                "date": datetime.strptime(date, "%Y-%m-%d").strftime("%a"), 
+                "temp": round(sum(temps)/len(temps)),
+                "icon": weather_icon
+            })
+
+        weekly_rain_chances = [day.get('pop', 0) * 100 for day in weekly_forecast] 
+        weekly_dates = [day['date'] for day in weekly_forecast]
+
+
+    return render_template("dashboard.html", weather=weather, weekly_forecast=weekly_forecast, weekly_rain=weekly_rain_chances,weekly_dates=weekly_dates, uv_index=uv_index, other_cities_weather=other_cities_weather, city_image=city_image, city=city)
 
 @app.route('/forecast')
 @login_required
