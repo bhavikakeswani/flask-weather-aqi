@@ -5,13 +5,19 @@ from flask_login import UserMixin, login_user, LoginManager, current_user, logou
 from sqlalchemy.orm import Mapped, mapped_column
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import Boolean, Integer, String, DateTime
+from weather_utils import get_weather, get_forecast,get_uv_index,get_city_image
+from collections import defaultdict
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 app=Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///weather.db'
 db = SQLAlchemy(app)
 
-app.config['SECRET_KEY'] = 'your-secret-key'
+app.config['SECRET_KEY'] = os.getenv("FLASK_SECRET_KEY")
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -56,7 +62,28 @@ def dashboard():
 @app.route('/forecast')
 @login_required
 def forecast():
-    return render_template('forecast.html')
+    city = current_user.default_city or "Delhi"
+    units = "metric" if current_user.temp_unit == "Celsius" else "imperial"
+
+    forecast_data = get_forecast(city, units)
+
+    grouped_forecast = defaultdict(list)
+    if forecast_data and "list" in forecast_data:
+        for entry in forecast_data["list"]:
+            date_str = entry["dt_txt"].split(" ")[0]
+            grouped_forecast[date_str].append(entry)
+
+    sorted_forecast = {}
+    for date_str, entries in grouped_forecast.items():
+        day_name = datetime.strptime(date_str, "%Y-%m-%d").strftime("%a")
+        sorted_forecast[day_name] = entries
+
+    return render_template("forecast.html", forecast=sorted_forecast, city=city)
+
+@app.template_filter("datetimeformat")
+def datetimeformat(value):
+    from datetime import datetime
+    return datetime.fromtimestamp(value).strftime("%H:%M")
 
 @app.route('/login',methods=['GET','POST'])
 def login():
