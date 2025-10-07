@@ -8,6 +8,7 @@ from sqlalchemy import Boolean, Integer, String, DateTime
 from weather_utils import get_weather, get_forecast,get_uv_index,get_city_image
 from collections import defaultdict
 from dotenv import load_dotenv
+import hashlib
 import os
 
 load_dotenv()
@@ -18,6 +19,13 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///weather.db'
 db = SQLAlchemy(app)
 
 app.config['SECRET_KEY'] = os.getenv("FLASK_SECRET_KEY")
+
+def gravatar_url(email, size=80, default="retro"):
+    email_hash = hashlib.md5(email.strip().lower().encode("utf-8")).hexdigest()
+    return f"https://www.gravatar.com/avatar/{email_hash}?s={size}&d={default}"
+@app.context_processor
+def inject_gravatar():
+    return dict(gravatar_url=gravatar_url)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
