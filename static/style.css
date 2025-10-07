@@ -270,25 +270,6 @@ body{
   display: block;
 }
 
-.explore button {
-  position: static;
-  bottom: 20px;
-  left: 20px;
-  margin-top: 10px;
-  background: #29b6f6;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  color: #fff;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.explore button:hover {
-  background: #0288d1;
-}
-
 .other-cities {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
