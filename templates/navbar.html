@@ -23,6 +23,6 @@
             </label>
         </div>
         <div class="profile-picture">
-            <img src="{{ gravatar_url(current_user.email, size=36) }}" alt="Avatar" id="profile-img">
+            <a href="{{url_for('profile')}}"><img src="{{ gravatar_url(current_user.email, size=36) }}" alt="Avatar" id="profile-img"></a>
         </div>
     </section>

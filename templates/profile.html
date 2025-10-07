@@ -8,7 +8,7 @@
         <h2>My Profile</h2>
         
         <section class="profile-card">
-            <img src="{{url_for('static',filename='default.jpg')}}" alt="User Avatar" class="profile-avatar">
+            <img src="{{ gravatar_url(current_user.email, size=36) }}" alt="Avatar" class="profile-avatar">
             <div class="profile-info">
                 <p><strong>Name:</strong> John Doe</p>
                 <p><strong>Email:</strong> johndoe@example.com</p>
