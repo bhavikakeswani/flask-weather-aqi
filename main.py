@@ -216,9 +216,20 @@ def change_password():
 
     return render_template('change_password.html')
 
-@app.route('/profile')
+@app.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+
+        current_user.name = name
+        current_user.email = email
+        db.session.commit()  
+
+        flash('Profile updated successfully!', 'success')
+        return redirect(url_for('profile'))
+
     return render_template('profile.html')
 
 @app.route('/settings')

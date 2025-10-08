@@ -10,15 +10,31 @@
         <section class="profile-card">
             <img src="{{ gravatar_url(current_user.email, size=36) }}" alt="Avatar" class="profile-avatar">
             <div class="profile-info">
-                <p><strong>Name:</strong> John Doe</p>
-                <p><strong>Email:</strong> johndoe@example.com</p>
+                <p><strong>Name:</strong> {{current_user.name}}</p>
+                <p><strong>Email:</strong> {{current_user.email}}</p>
             </div>
-            <button class="btn-edit"><i class="bi bi-pencil-square"></i> Edit Info</button>
+            <button id="editBtn" class="btn-edit"><i class="bi bi-pencil-square"></i> Edit Info</button>
         </section>
+
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3>Edit Profile Info</h3>
+                <form method="POST" action="{{ url_for('profile') }}">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" value="{{ current_user.name }}" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" value="{{ current_user.email }}" required>
+
+                    <button type="submit" class="btn-save">Save Changes</button>
+                </form>
+            </div>
+        </div>
 
         <section class="preferences">
             <h3>Preferences</h3>
-            <form>
+            <form method="POST" action="{{ url_for('update_preferences') }}">
                 <label for="city">Default City:</label>
                 <input type="text" id="city" placeholder="Enter city name">
 
@@ -37,21 +53,28 @@
                 <button type="submit" class="btn-save">Save Changes</button>
             </form>
         </section>
-
-        <section class="security">
-            <h3>Account Security</h3>
-            <form>
-                <label for="old-pass">Current Password:</label>
-                <input type="password" id="old-pass" placeholder="Enter current password">
-
-                <label for="new-pass">New Password:</label>
-                <input type="password" id="new-pass" placeholder="Enter new password">
-
-                <label for="confirm-pass">Confirm New Password:</label>
-                <input type="password" id="confirm-pass" placeholder="Confirm new password">
-
-                <button type="submit" class="btn-password">Update Password</button>
-            </form>
-        </section>
     </main>
 {% endblock %}
+
+{% block scripts %}
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const modal = document.getElementById("editModal");
+        const openBtn = document.getElementById("editBtn");
+        const closeBtn = document.querySelector(".modal .close");
+
+        openBtn.addEventListener("click", () => {
+            modal.style.display = "block";
+        });
+
+        closeBtn.addEventListener("click", () => {
+            modal.style.display = "none";
+        });
+
+        window.addEventListener("click", (e) => {
+            if (e.target === modal) modal.style.display = "none";
+        });
+    });
+    </script>
+
+{%endblock%}
