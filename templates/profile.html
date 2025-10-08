@@ -36,24 +36,23 @@
             <h3>Preferences</h3>
             <form method="POST" action="{{ url_for('update_preferences') }}">
                 <label for="city">Default City:</label>
-                <input type="text" id="city" placeholder="Enter city name">
+                <input type="text" id="city" name="default_city" placeholder="Enter city name" value="{{ current_user.default_city }}">
 
                 <label for="unit">Temperature Unit:</label>
-                <select id="unit">
-                    <option value="celsius">Celsius (°C)</option>
-                    <option value="fahrenheit">Fahrenheit (°F)</option>
+                <select id="unit" name="temp_unit">
+                    <option value="Celsius" {% if current_user.temp_unit == "Celsius" %}selected{% endif %}>Celsius (°C)</option>
+                    <option value="Fahrenheit" {% if current_user.temp_unit == "Fahrenheit" %}selected{% endif %}>Fahrenheit (°F)</option>
                 </select>
 
                 <label for="theme">Theme:</label>
-                <select id="theme">
-                    <option value="light">Light</option>
-                    <option value="dark">Dark</option>
+                <select id="theme" name="theme">
+                    <option value="Light" {% if current_user.theme == "Light" %}selected{% endif %}>Light</option>
+                    <option value="Dark" {% if current_user.theme == "Dark" %}selected{% endif %}>Dark</option>
                 </select>
 
                 <button type="submit" class="btn-save">Save Changes</button>
             </form>
         </section>
-    </main>
 {% endblock %}
 
 {% block scripts %}
