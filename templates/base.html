@@ -12,6 +12,39 @@
     {% include 'navbar.html' %}
     {% block content %} {% endblock %}
     
-    {% block scripts %}{% endblock %}
+    <script>
+        window.addEventListener('load', () => {
+
+        const menuBtn = document.getElementById('menuBtn');
+        const menuPanel = document.getElementById('menuPanel');
+
+        const profileBtn = document.getElementById('profileBtn');
+        const profilePanel = document.getElementById('profilePanel');
+
+        function setupDropdown(btn, panel) {
+            if (!btn || !panel) return;
+            btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isVisible = panel.style.display === 'block';
+            document.querySelectorAll('.menu, .profile-menu').forEach(p => p.style.display = 'none');
+            panel.style.display = isVisible ? 'none' : 'block';
+            });
+        }
+
+        setupDropdown(menuBtn, menuPanel);
+        setupDropdown(profileBtn, profilePanel);
+
+        document.addEventListener('click', (e) => {
+            if (!menuBtn.contains(e.target) && !menuPanel.contains(e.target) &&
+                !profileBtn.contains(e.target) && !profilePanel.contains(e.target)) {
+            menuPanel.style.display = 'none';
+            profilePanel.style.display = 'none';
+            }
+        });
+        });
+    </script>
+
+    {% block scripts %}
+    {% endblock %}
 </body>
 </html>

@@ -1,6 +1,12 @@
 <section class="navbar">
-        <div class="icon">
+        <div class="icon" id="menuBtn">
             <i class="bi bi-grid-fill"></i>
+        </div>
+        <div class="menu" id="menuPanel">
+            <a href="{{url_for('dashboard')}}">Home</a>
+            <a href="{{url_for('forecast')}}">Forecast</a>
+            <a href="{{url_for('about')}}">About</a>
+            <a href="{{url_for('contact')}}">Contact</a>
         </div>
         <div class="icon">
             <i class="bi bi-bell-fill"></i>
@@ -22,7 +28,11 @@
                 </span>
             </label>
         </div>
-        <div class="profile-picture">
-            <a href="{{url_for('profile')}}"><img src="{{ gravatar_url(current_user.email, size=36) }}" alt="Avatar" id="profile-img"></a>
+        <div class="profile-picture" id="profileBtn">
+            <img src="{{ gravatar_url(current_user.email, size=36) }}" alt="Avatar" id="profile-img">
+        </div>
+        <div class="profile-menu" id="profilePanel">
+            <a href="{{url_for('profile')}}">Profile</a>
+            <a href="{{url_for('settings')}}">Settings</a>
         </div>
     </section>

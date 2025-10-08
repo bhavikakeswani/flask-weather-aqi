@@ -18,6 +18,63 @@ body{
   z-index: 1000;
 }
 
+.menu {
+  display: none;
+  position: absolute;
+  top: 100%;         
+  left: 1%;  
+  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.menu a {
+  display: block;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: #333;
+}
+
+.menu a:hover {
+  background: #f0f0f0;
+}
+
+.icon#menuBtn {
+  position: relative;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.profile-picture {
+  position: relative; 
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.profile-menu {
+  display: none;
+  position: absolute;
+  top: 100%;  
+  right: 0.5%;    
+  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 999;
+}
+
+.profile-menu a {
+  display: block;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: #333;
+}
+
+.profile-menu a:hover {
+  background: #f0f0f0;
+}
+
 .icon{
     border-radius: 50%;
     background-color: #787676;
