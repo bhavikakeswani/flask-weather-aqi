@@ -42,7 +42,7 @@ class User(db.Model, UserMixin):
     bio: Mapped[str] = mapped_column(String(250), default="")
     github: Mapped[str] = mapped_column(String(250), default="")
     avatar_url: Mapped[str] = mapped_column(String(250), default="default.jpg")
-    default_city: Mapped[str] = mapped_column(String(100), default="")
+    default_city: Mapped[str] = mapped_column(String(100), default="Delhi")
 
     theme: Mapped[str] = mapped_column(String(50), default="Light")   
     font_size: Mapped[str] = mapped_column(String(50), default="Medium") 
@@ -65,7 +65,7 @@ def home():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    city = current_user.default_city or "Delhi"
+    city = current_user.default_city
     units = "metric" if current_user.temp_unit == "Celsius" else "imperial"
 
     weather = get_weather(city, units)
