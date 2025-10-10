@@ -235,16 +235,26 @@ def profile():
 @app.route('/update_preferences', methods=['POST'])
 @login_required
 def update_preferences():
+    if request.is_json:
+        data = request.get_json()
+        theme = data.get("theme")
+        if theme:
+            current_user.theme = theme
+        db.session.commit()
+        return {"success": True}
+
     default_city = request.form.get('default_city')
     temp_unit = request.form.get('temp_unit')
     theme = request.form.get('theme')
 
-    current_user.default_city = default_city
-    current_user.temp_unit = temp_unit
-    current_user.theme = theme
+    if default_city:
+        current_user.default_city = default_city
+    if temp_unit:
+        current_user.temp_unit = temp_unit
+    if theme:
+        current_user.theme = theme
 
     db.session.commit()
-
     return redirect(url_for('profile'))
 
 @app.route('/settings')

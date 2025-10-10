@@ -42,6 +42,35 @@
             }
         });
         });
+
+        document.addEventListener("DOMContentLoaded", () => {
+        const body = document.body;
+        const toggle = document.querySelector(".switch input");
+        const theme = "{{ current_user.theme if current_user.is_authenticated else 'Light' }}";
+
+        if(theme === "Dark") {
+            body.classList.add("dark");
+            if(toggle) toggle.checked = true;
+        } else {
+            body.classList.remove("dark");
+            if(toggle) toggle.checked = false;
+        }
+
+        if(toggle) {
+            toggle.addEventListener("change", () => {
+                const newTheme = toggle.checked ? "Dark" : "Light";
+                body.classList.toggle("dark");
+
+                fetch("{{ url_for('update_preferences') }}", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ theme: newTheme })
+                });
+            });
+        }
+    });
     </script>
 
     {% block scripts %}
