@@ -257,9 +257,22 @@ def update_preferences():
     db.session.commit()
     return redirect(url_for('profile'))
 
-@app.route('/settings')
+@app.route('/settings', methods=['GET', 'POST'])
 @login_required
 def settings():
+    if request.method == 'POST':
+        current_user.language = request.form.get('language')
+        current_user.temp_unit = request.form.get('temp_unit')
+        current_user.theme = request.form.get('theme')
+        current_user.font_size = request.form.get('font_size')
+        current_user.weather_alert = bool(request.form.get('weather_alert'))
+        current_user.aqi_alert = bool(request.form.get('aqi_alert'))
+        current_user.aqi_threshold = int(request.form.get('aqi_threshold', 150))
+
+        db.session.commit()
+        flash("Settings updated successfully!", "success")
+        return redirect(url_for('settings'))
+
     return render_template('settings.html')
 
 @app.route('/about')
