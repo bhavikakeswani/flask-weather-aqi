@@ -8,6 +8,7 @@ from sqlalchemy import Boolean, Integer, String, DateTime
 from weather_utils import get_weather, get_forecast,get_uv_index,get_city_image
 from collections import defaultdict
 from dotenv import load_dotenv
+from datetime import datetime, timedelta
 import hashlib
 import os
 
@@ -81,12 +82,11 @@ def dashboard():
                 "temp": data["main"]["temp"]
             })
 
+    uv_index = None
     if weather and "coord" in weather:
         lat = weather["coord"]["lat"]
         lon = weather["coord"]["lon"]
         uv_index = get_uv_index(lat, lon)
-    else:
-        uv_index = None
 
     forecast_data = get_forecast(city, units)
     weekly_forecast = []
@@ -99,20 +99,51 @@ def dashboard():
             date_str = entry["dt_txt"].split(" ")[0]
             grouped[date_str].append(entry)
 
+        today_str = datetime.now().strftime("%Y-%m-%d")
         for date, entries in grouped.items():
             temps = [e["main"]["temp"] for e in entries]
             weather_icon = entries[0]["weather"][0]["icon"]
             weekly_forecast.append({
-                "date": datetime.strptime(date, "%Y-%m-%d").strftime("%a"), 
+                "date": datetime.strptime(date, "%Y-%m-%d").strftime("%a"),
+                "full_date": date,
                 "temp": round(sum(temps)/len(temps)),
-                "icon": weather_icon
+                "icon": weather_icon,
+                "pop": round(max(
+                    e.get("pop", 0)
+                    or e.get("rain", {}).get("3h", 0)
+                    or e.get("snow", {}).get("3h", 0)
+                    for e in entries
+                ) * 100
+            )
             })
 
-        weekly_rain_chances = [day.get('pop', 0) * 100 for day in weekly_forecast] 
+        weekly_forecast.sort(key=lambda x: x["full_date"])
+        print(weekly_forecast)
         weekly_dates = [day['date'] for day in weekly_forecast]
+        weekly_rain_chances = [day.get('pop', 0) for day in weekly_forecast]
 
+        tomorrow_forecast = weekly_forecast[1] if len(weekly_forecast) > 1 else None
+        next_days_forecast = weekly_forecast[1:6]  # max 5 days for free API
 
-    return render_template("dashboard.html", weather=weather, weekly_forecast=weekly_forecast, weekly_rain=weekly_rain_chances,weekly_dates=weekly_dates, uv_index=uv_index, other_cities_weather=other_cities_weather, city_image=city_image, city=city)
+    else:
+        weekly_dates = []
+        weekly_rain_chances = []
+        tomorrow_forecast = None
+        next_days_forecast = []
+
+    return render_template(
+        "dashboard.html",
+        weather=weather,
+        weekly_forecast=weekly_forecast,
+        weekly_rain=weekly_rain_chances,
+        weekly_dates=weekly_dates,
+        tomorrow_forecast=tomorrow_forecast,
+        next_days_forecast=next_days_forecast,
+        uv_index=uv_index,
+        other_cities_weather=other_cities_weather,
+        city_image=city_image,
+        city=city
+    )
 
 @app.route('/forecast')
 @login_required
@@ -227,7 +258,6 @@ def profile():
         current_user.email = email
         db.session.commit()  
 
-        flash('Profile updated successfully!', 'success')
         return redirect(url_for('profile'))
 
     return render_template('profile.html')
@@ -270,7 +300,6 @@ def settings():
         current_user.aqi_threshold = int(request.form.get('aqi_threshold', 150))
 
         db.session.commit()
-        flash("Settings updated successfully!", "success")
         return redirect(url_for('settings'))
 
     return render_template('settings.html')

@@ -9,7 +9,7 @@
             <div class="tabs">
                 <button id="today-btn" class="active">Today</button>
                 <button id="tomorrow-btn">Tomorrow</button>
-                <button id="weekly-btn">Next 7 days</button>
+                <button id="weekly-btn">Next 5 days</button>
             </div>
             <div class="switch-wrapper">
                 <label class="forecast-switch">
@@ -87,31 +87,92 @@
 {% endblock %}
 
 {% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
+    const forecastDiv = document.querySelector(".forecast");
+    const todayBtn = document.getElementById("today-btn");
+    const tomorrowBtn = document.getElementById("tomorrow-btn");
+    const weeklyBtn = document.getElementById("weekly-btn");
+
+    const weeklyForecast = JSON.parse(`{{ weekly_forecast | tojson | safe }}`);
+    const tomorrowForecast = JSON.parse(`{{ tomorrow_forecast | tojson | safe }}`);
+    const nextDaysForecast = JSON.parse(`{{ next_days_forecast | tojson | safe }}`);
+
     const ctx = document.getElementById('rainChart').getContext('2d');
+    let rainChart;
 
-    const rainLabels = JSON.parse(`{{ weekly_dates | tojson | safe }}`);
-    const rainData = JSON.parse(`{{ weekly_rain | tojson | safe }}`);
-
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: rainLabels,
-            datasets: [{
-                label: 'Chance of Rain (%)',
-                data: rainData,
-                backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: { y: { beginAtZero: true, max: 100 } },
-            plugins: { legend: { display: false } }
+    function renderForecast(forecast) {
+        forecastDiv.innerHTML = "";
+        if (!forecast) {
+            forecastDiv.innerHTML = "<p>No forecast available</p>";
+            updateRainChart([], []);
+            return;
         }
+        if (!Array.isArray(forecast)) forecast = [forecast];
+
+        const labels = [];
+        const rainData = [];
+
+        forecast.forEach(day => {
+            const div = document.createElement("div");
+            div.classList.add("day");
+            div.innerHTML = `
+                ${day.date} <br>
+                <img src="http://openweathermap.org/img/wn/${day.icon}@2x.png" width="60" alt="weather icon"><br>
+                <span>${day.temp}°</span>
+            `;
+            forecastDiv.appendChild(div);
+            labels.push(day.date);
+            rainData.push(day.pop || 0);
+        });
+
+        updateRainChart(labels, rainData);
+    }
+
+    function updateRainChart(labels, data) {
+        if (rainChart) rainChart.destroy();
+        rainChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Chance of Rain (%)',
+                    data: data,
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: { y: { beginAtZero: true, max: 100 } },
+                plugins: { legend: { display: false } }
+            }
+        });
+    }
+
+    todayBtn.addEventListener("click", function() {
+        renderForecast([weeklyForecast[0]]);
+        todayBtn.classList.add("active");
+        tomorrowBtn.classList.remove("active");
+        weeklyBtn.classList.remove("active");
     });
+
+    tomorrowBtn.addEventListener("click", function() {
+        renderForecast(tomorrowForecast);
+        todayBtn.classList.remove("active");
+        tomorrowBtn.classList.add("active");
+        weeklyBtn.classList.remove("active");
+    });
+
+    weeklyBtn.addEventListener("click", function() {
+        renderForecast(nextDaysForecast);
+        todayBtn.classList.remove("active");
+        tomorrowBtn.classList.remove("active");
+        weeklyBtn.classList.add("active");
+    });
+
+    renderForecast([weeklyForecast[0]]);
 });
 </script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {% endblock %}
