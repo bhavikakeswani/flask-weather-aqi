@@ -80,13 +80,15 @@ def dashboard():
     city = searched_city if searched_city else current_user.default_city
 
     units = "metric" if current_user.temp_unit == "Celsius" else "imperial"
+    unit_symbol = "°C" if units == "metric" else "°F"
+    wind_unit = "m/s" if units == "metric" else "mph"
 
     weather = get_weather(city, units)
 
     other_city_names = ["Beijing", "California", "Dubai", "Charlottetown"]
     other_cities_weather = []
     for c in other_city_names:
-        data = get_weather(c)
+        data = get_weather(c, units)
         if data:
             other_cities_weather.append({
                 "name": c,
@@ -145,7 +147,9 @@ def dashboard():
         uv_index=uv_index,
         other_cities_weather=other_cities_weather,
         city_image=city_image,
-        city=city 
+        city=city,
+        unit_symbol=unit_symbol,
+        wind_unit=wind_unit
     )
 
 @app.route('/forecast')

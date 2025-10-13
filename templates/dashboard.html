@@ -3,87 +3,87 @@
 {% block title %}Dashboard | SkySQI{% endblock %}
 
 {% block content %}
+<main class="dashboard">
+    <section class="forecast-toggle">
+        <div class="tabs">
+            <button id="today-btn" class="active">Today</button>
+            <button id="tomorrow-btn">Tomorrow</button>
+            <button id="weekly-btn">Next 5 days</button>
+        </div>
+        <div class="switch-wrapper">
+            <label class="forecast-switch">
+                <input type="checkbox" id="toggle-forecast">
+                <span class="forecast-slider">
+                    <span class="on">Forecast</span>
+                    <span class="off">Air Quality</span>
+                </span>
+            </label>
+        </div>
+    </section>
 
-    <main class="dashboard">
-        <section class="forecast-toggle">
-            <div class="tabs">
-                <button id="today-btn" class="active">Today</button>
-                <button id="tomorrow-btn">Tomorrow</button>
-                <button id="weekly-btn">Next 5 days</button>
-            </div>
-            <div class="switch-wrapper">
-                <label class="forecast-switch">
-                    <input type="checkbox" id="toggle-forecast">
-                    <span class="forecast-slider">
-                        <span class="on">Forecast</span>
-                        <span class="off">Air Quality</span>
-                    </span>
-                </label>
-            </div>
-        </section>
-
-        <section class="current-weather">
-            <div class="weather-wrapper">
-                <div class="temp-card">
-                    {% if weather %}
-                        <h2>{{ weather['main']['temp'] }}° {{ 'C' if current_user.temp_unit == 'Celsius' else 'F' }}</h2>
-                        <p>Real Feel {{ weather['main']['feels_like'] }}°</p>
-                        <p>Wind: {{ weather['wind']['speed'] }} {{ 'm/s' if current_user.temp_unit == 'Celsius' else 'mph' }}</p>
-                        <p>Pressure: {{ weather['main']['pressure'] }} hPa</p>
-                        <p>Humidity: {{ weather['main']['humidity'] }}%</p>
-                        <p>Sunrise: {{ weather['sys']['sunrise'] | datetimeformat }} | Sunset: {{ weather['sys']['sunset'] | datetimeformat }}</p>
-                    {% else %}
-                        <p>No weather data available.</p>
-                    {% endif %}
-                </div>
-
-                <div class="forecast">
-                    {% for day in weekly_forecast %}
-                        <div class="day">{{ day.date }} <br>
-                            <img src="http://openweathermap.org/img/wn/{{ day.icon }}@2x.png" alt="weather icon" width="60">
-                            <br>
-                            <span>{{ day.temp }}°</span></div>
-                    {% endfor %}
-                </div>
-                <div class="rain-chart">
-                    <h3>Chance of Rain</h3>
-                    <canvas id="rainChart"></canvas>
-                </div>
-            </div>
-        </section>
-
-        <section class="overview">
-            <div class="card">
-                Wind Status <br> {{ weather['wind']['speed'] }} {{ 'm/s' if current_user.temp_unit == 'Celsius' else 'mph' }}
-            </div>
-            <div class="card">
-                UV Index <br>
-                {% if uv_index is not none %}
-                    {{ uv_index }}
+    <section class="current-weather">
+        <div class="weather-wrapper">
+            <div class="temp-card">
+                {% if weather %}
+                    <h2>{{ weather['main']['temp'] }} {{ unit_symbol }}</h2>
+                    <p>Real Feel {{ weather['main']['feels_like'] }} {{ unit_symbol }}</p>
+                    <p>Wind: {{ weather['wind']['speed'] }} {{ wind_unit }}</p>
+                    <p>Pressure: {{ weather['main']['pressure'] }} hPa</p>
+                    <p>Humidity: {{ weather['main']['humidity'] }}%</p>
+                    <p>Sunrise: {{ weather['sys']['sunrise'] | datetimeformat }} | Sunset: {{ weather['sys']['sunset'] | datetimeformat }}</p>
                 {% else %}
-                    Not available
+                    <p>No weather data available.</p>
                 {% endif %}
             </div>
-            <div class="card">
-                Humidity <br> {{ weather['main']['humidity'] }}%
-            </div>
-            <div class="card">
-                Visibility <br> {{ (weather['visibility'] / 1000) | round(1) }} km
-            </div>
-        </section>
 
-        <section class="explore">
-            <img src="{{ city_image or url_for('static', filename='images/fallback.jpg') }}" alt="City view">
-        </section>
+            <div class="forecast">
+                {% for day in weekly_forecast %}
+                    <div class="day">{{ day.date }} <br>
+                        <img src="http://openweathermap.org/img/wn/{{ day.icon }}@2x.png" alt="weather icon" width="60">
+                        <br>
+                        <span>{{ day.temp }} {{ unit_symbol }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="rain-chart">
+                <h3>Chance of Rain</h3>
+                <canvas id="rainChart"></canvas>
+            </div>
+        </div>
+    </section>
 
-        <section class="other-cities">
-            {% for c in other_cities_weather %}
-                <div class="city">
-                {{ c.name }} – {{ c.description }} ({{ c.temp }}°C)
-                </div>
-            {% endfor %}
-        </section>
-    </main>
+    <section class="overview">
+        <div class="card">
+            Wind Status <br> {{ weather['wind']['speed'] }} {{ wind_unit }}
+        </div>
+        <div class="card">
+            UV Index <br>
+            {% if uv_index is not none %}
+                {{ uv_index }}
+            {% else %}
+                Not available
+            {% endif %}
+        </div>
+        <div class="card">
+            Humidity <br> {{ weather['main']['humidity'] }}%
+        </div>
+        <div class="card">
+            Visibility <br> {{ (weather['visibility'] / 1000) | round(1) }} km
+        </div>
+    </section>
+
+    <section class="explore">
+        <img src="{{ city_image or url_for('static', filename='images/fallback.jpg') }}" alt="City view">
+    </section>
+
+    <section class="other-cities">
+        {% for c in other_cities_weather %}
+            <div class="city">
+            {{ c.name }} – {{ c.description }} ({{ c.temp }} {{ unit_symbol }})
+            </div>
+        {% endfor %}
+    </section>
+</main>
 {% endblock %}
 
 {% block scripts %}
@@ -98,6 +98,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const weeklyForecast = JSON.parse(`{{ weekly_forecast | tojson | safe }}`);
     const tomorrowForecast = JSON.parse(`{{ tomorrow_forecast | tojson | safe }}`);
     const nextDaysForecast = JSON.parse(`{{ next_days_forecast | tojson | safe }}`);
+    const unitSymbol = `{{ unit_symbol }}`;
 
     const ctx = document.getElementById('rainChart').getContext('2d');
     let rainChart;
@@ -120,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function() {
             div.innerHTML = `
                 ${day.date} <br>
                 <img src="http://openweathermap.org/img/wn/${day.icon}@2x.png" width="60" alt="weather icon"><br>
-                <span>${day.temp}°</span>
+                <span>${day.temp} ${unitSymbol}</span>
             `;
             forecastDiv.appendChild(div);
             labels.push(day.date);
