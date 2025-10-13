@@ -8,7 +8,8 @@ from sqlalchemy import Boolean, Integer, String, DateTime
 from weather_utils import get_weather, get_forecast,get_uv_index,get_city_image
 from collections import defaultdict
 from dotenv import load_dotenv
-from datetime import datetime, timedelta
+from datetime import datetime
+from flask_mail import Mail, Message
 import hashlib
 import os
 
@@ -20,6 +21,15 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///weather.db'
 db = SQLAlchemy(app)
 
 app.config['SECRET_KEY'] = os.getenv("FLASK_SECRET_KEY")
+MAIL_ID=os.getenv("MAIL_ID")
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = MAIL_ID
+app.config['MAIL_PASSWORD'] = os.getenv("MAIL_PASSWORD")
+app.config['MAIL_DEFAULT_SENDER'] = ('SkySQI Contact', MAIL_ID)
+
+mail = Mail(app)
 
 def gravatar_url(email, size=80, default="retro"):
     email_hash = hashlib.md5(email.strip().lower().encode("utf-8")).hexdigest()
@@ -309,9 +319,33 @@ def settings():
 def about():
     return render_template('about.html')
 
-@app.route('/contact')
+@app.route('/contact', methods=['GET', 'POST'])
 @login_required
 def contact():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        subject = request.form['subject']
+        message = request.form['message']
+
+        html_content = f"""
+        <h2>New Contact Form Submission</h2>
+        <p><strong>Name:</strong> {name}</p>
+        <p><strong>Email:</strong> {email}</p>
+        <p><strong>Subject:</strong> {subject}</p>
+        <p><strong>Message:</strong></p>
+        <p>{message}</p>
+        """
+
+        msg = Message(
+            subject=f"Contact Form: {subject}",
+            recipients=[MAIL_ID],
+            html=html_content
+        )
+
+        mail.send(msg)
+        return redirect(url_for('contact'))
+
     return render_template('contact.html')
 
 @app.route('/logout')
