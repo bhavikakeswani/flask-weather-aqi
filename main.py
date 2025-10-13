@@ -76,7 +76,9 @@ def home():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    city = current_user.default_city
+    searched_city = request.args.get('city')
+    city = searched_city if searched_city else current_user.default_city
+
     units = "metric" if current_user.temp_unit == "Celsius" else "imperial"
 
     weather = get_weather(city, units)
@@ -94,13 +96,11 @@ def dashboard():
 
     uv_index = None
     if weather and "coord" in weather:
-        lat = weather["coord"]["lat"]
-        lon = weather["coord"]["lon"]
+        lat, lon = weather["coord"]["lat"], weather["coord"]["lon"]
         uv_index = get_uv_index(lat, lon)
 
     forecast_data = get_forecast(city, units)
     weekly_forecast = []
-
     city_image = get_city_image(city)
 
     if forecast_data and "list" in forecast_data:
@@ -109,7 +109,6 @@ def dashboard():
             date_str = entry["dt_txt"].split(" ")[0]
             grouped[date_str].append(entry)
 
-        today_str = datetime.now().strftime("%Y-%m-%d")
         for date, entries in grouped.items():
             temps = [e["main"]["temp"] for e in entries]
             weather_icon = entries[0]["weather"][0]["icon"]
@@ -123,23 +122,17 @@ def dashboard():
                     or e.get("rain", {}).get("3h", 0)
                     or e.get("snow", {}).get("3h", 0)
                     for e in entries
-                ) * 100
-            )
+                ) * 100)
             })
 
         weekly_forecast.sort(key=lambda x: x["full_date"])
-        print(weekly_forecast)
-        weekly_dates = [day['date'] for day in weekly_forecast]
-        weekly_rain_chances = [day.get('pop', 0) for day in weekly_forecast]
+        weekly_dates = [day["date"] for day in weekly_forecast]
+        weekly_rain_chances = [day.get("pop", 0) for day in weekly_forecast]
 
         tomorrow_forecast = weekly_forecast[1] if len(weekly_forecast) > 1 else None
-        next_days_forecast = weekly_forecast[1:6]  # max 5 days for free API
-
+        next_days_forecast = weekly_forecast[1:6]
     else:
-        weekly_dates = []
-        weekly_rain_chances = []
-        tomorrow_forecast = None
-        next_days_forecast = []
+        weekly_dates, weekly_rain_chances, tomorrow_forecast, next_days_forecast = [], [], None, []
 
     return render_template(
         "dashboard.html",
@@ -152,7 +145,7 @@ def dashboard():
         uv_index=uv_index,
         other_cities_weather=other_cities_weather,
         city_image=city_image,
-        city=city
+        city=city 
     )
 
 @app.route('/forecast')

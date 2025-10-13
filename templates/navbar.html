@@ -13,7 +13,7 @@
         </div>
         <div class="location">
             <i id="geo-icon" class="bi bi-geo-alt-fill"></i>
-            <span id="loc-text">{{current_user.default_city}}</span>
+            <span id="loc-text">{{ city if city else current_user.default_city }}</span>
         </div>
         <div class="search-bar">
             <i class="bi bi-search"></i>
@@ -37,3 +37,23 @@
             <a href="{{url_for('logout')}}">Logout</a>
         </div>
     </section>
+
+    {% block scripts %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const searchInput = document.querySelector(".search-bar input");
+
+            if (searchInput) {
+                searchInput.addEventListener("keypress", function(e) {
+                    if (e.key === "Enter") {
+                        e.preventDefault();
+                        const city = searchInput.value.trim();
+                        if (city) {
+                            window.location.href = `/dashboard?city=${encodeURIComponent(city)}`;
+                        }
+                    }
+                });
+            }
+        });
+        </script>
+    {%endblock%}
