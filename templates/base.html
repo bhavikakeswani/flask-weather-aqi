@@ -10,14 +10,12 @@
 </head>
 <body>
     {% include 'navbar.html' %}
-    {% block content %} {% endblock %}
-    
+    {% block content %}{% endblock %}
+
     <script>
         window.addEventListener('load', () => {
-
         const menuBtn = document.getElementById('menuBtn');
         const menuPanel = document.getElementById('menuPanel');
-
         const profileBtn = document.getElementById('profileBtn');
         const profilePanel = document.getElementById('profilePanel');
 
@@ -37,37 +35,49 @@
         document.addEventListener('click', (e) => {
             if (!menuBtn.contains(e.target) && !menuPanel.contains(e.target) &&
                 !profileBtn.contains(e.target) && !profilePanel.contains(e.target)) {
-            menuPanel.style.display = 'none';
-            profilePanel.style.display = 'none';
+                    menuPanel.style.display = 'none';
+                    profilePanel.style.display = 'none';
             }
         });
-        });
+});
 
         document.addEventListener("DOMContentLoaded", () => {
         const body = document.body;
         const toggle = document.querySelector(".switch input");
         const theme = "{{ current_user.theme if current_user.is_authenticated else 'Light' }}";
 
-        if(theme === "Dark") {
+        if (theme === "Dark") {
             body.classList.add("dark");
-            if(toggle) toggle.checked = true;
+            if (toggle) toggle.checked = true;
         } else {
             body.classList.remove("dark");
-            if(toggle) toggle.checked = false;
+            if (toggle) toggle.checked = false;
         }
 
-        if(toggle) {
+        if (toggle) {
             toggle.addEventListener("change", () => {
                 const newTheme = toggle.checked ? "Dark" : "Light";
                 body.classList.toggle("dark");
 
                 fetch("{{ url_for('update_preferences') }}", {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+                    headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ theme: newTheme })
                 });
+            });
+        }
+
+        const savedFontSize = "{{ current_user.font_size if current_user.is_authenticated else 'Medium' }}";
+        document.body.classList.add(savedFontSize.toLowerCase() + "-font");
+
+        const settingsForm = document.querySelector("#settings-form");
+        if (settingsForm) {
+            settingsForm.addEventListener("submit", (e) => {
+                const selectedFont = document.querySelector("#font-size");
+                if (selectedFont) {
+                    document.body.classList.remove("small-font", "medium-font", "large-font");
+                    document.body.classList.add(selectedFont.value.toLowerCase() + "-font");
+                }
             });
         }
     });
