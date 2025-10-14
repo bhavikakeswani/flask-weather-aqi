@@ -1,79 +1,79 @@
 {% extends 'base.html' %}
 
-{% block title %}Settings | SkySQI{% endblock %}
+{% block title %}{{ _('Settings') }} | SkySQI{% endblock %}
 
 {% block content %}
 
 <main class="settings-container">
-    <h2>Settings</h2>
+    <h2>{{ _('Settings') }}</h2>
 
     <form action="{{ url_for('settings') }}" method="POST">
 
         <div class="settings-card">
-            <h3>App Preferences</h3>
-            <label for="language">Language:</label>
+            <h3>{{ _('App Preferences') }}</h3>
+            <label for="language">{{ _('Language') }}:</label>
             <select id="language" name="language">
-                <option value="English" {% if current_user.language == 'English' %}selected{% endif %}>English</option>
-                <option value="Hindi" {% if current_user.language == 'Hindi' %}selected{% endif %}>Hindi</option>
-                <option value="Bengali" {% if current_user.language == 'Bengali' %}selected{% endif %}>Bengali</option>
+                <option value="English" {% if current_user.language == 'English' %}selected{% endif %}>{{ _('English') }}</option>
+                <option value="Hindi" {% if current_user.language == 'Hindi' %}selected{% endif %}>{{ _('Hindi') }}</option>
+                <option value="French" {% if current_user.language == 'French' %}selected{% endif %}>{{ _('French') }}</option>
             </select>
 
-            <label for="temp-unit">Temperature Unit:</label>
+            <label for="temp-unit">{{ _('Temperature Unit') }}:</label>
             <select id="temp-unit" name="temp_unit">
-                <option value="Celsius" {% if current_user.temp_unit == 'Celsius' %}selected{% endif %}>°C (Celsius)</option>
-                <option value="Fahrenheit" {% if current_user.temp_unit == 'Fahrenheit' %}selected{% endif %}>°F (Fahrenheit)</option>
+                <option value="Celsius" {% if current_user.temp_unit == 'Celsius' %}selected{% endif %}>°C ({{ _('Celsius') }})</option>
+                <option value="Fahrenheit" {% if current_user.temp_unit == 'Fahrenheit' %}selected{% endif %}>°F ({{ _('Fahrenheit') }})</option>
             </select>
 
-            <label for="aqi-unit">AQI Standard:</label>
+            <label for="aqi-unit">{{ _('AQI Standard') }}:</label>
             <select id="aqi-unit" name="aqi_unit">
-                <option value="US AQI" {% if current_user.aqi_unit == 'US AQI' %}selected{% endif %}>US AQI</option>
-                <option value="WHO Standard" {% if current_user.aqi_unit == 'WHO Standard' %}selected{% endif %}>WHO Standard</option>
+                <option value="US AQI" {% if current_user.aqi_unit == 'US AQI' %}selected{% endif %}>{{ _('US AQI') }}</option>
+                <option value="WHO Standard" {% if current_user.aqi_unit == 'WHO Standard' %}selected{% endif %}>{{ _('WHO Standard') }}</option>
             </select>
         </div>
 
         <div class="settings-card">
-            <h3>Display</h3>
-            <label for="theme">Theme:</label>
+            <h3>{{ _('Display') }}</h3>
+            <label for="theme">{{ _('Theme') }}:</label>
             <select id="theme" name="theme">
-                <option value="Light" {% if current_user.theme == 'Light' %}selected{% endif %}>Light</option>
-                <option value="Dark" {% if current_user.theme == 'Dark' %}selected{% endif %}>Dark</option>
-                <option value="Auto" {% if current_user.theme == 'Auto' %}selected{% endif %}>Auto</option>
+                <option value="Light" {% if current_user.theme == 'Light' %}selected{% endif %}>{{ _('Light') }}</option>
+                <option value="Dark" {% if current_user.theme == 'Dark' %}selected{% endif %}>{{ _('Dark') }}</option>
+                <option value="Auto" {% if current_user.theme == 'Auto' %}selected{% endif %}>{{ _('Auto') }}</option>
             </select>
 
-            <label for="font-size">Font Size:</label>
+            <label for="font-size">{{ _('Font Size') }}:</label>
             <select id="font-size" name="font_size">
-                <option value="Small" {% if current_user.font_size == 'Small' %}selected{% endif %}>Small</option>
-                <option value="Medium" {% if current_user.font_size == 'Medium' %}selected{% endif %}>Medium</option>
-                <option value="Large" {% if current_user.font_size == 'Large' %}selected{% endif %}>Large</option>
+                <option value="Small" {% if current_user.font_size == 'Small' %}selected{% endif %}>{{ _('Small') }}</option>
+                <option value="Medium" {% if current_user.font_size == 'Medium' %}selected{% endif %}>{{ _('Medium') }}</option>
+                <option value="Large" {% if current_user.font_size == 'Large' %}selected{% endif %}>{{ _('Large') }}</option>
             </select>
         </div>
 
         <div class="settings-card">
-            <h3>Notifications</h3>
+            <h3>{{ _('Notifications') }}</h3>
             <label>
                 <input type="checkbox" name="weather_alert" value="1" {% if current_user.weather_alert %}checked{% endif %}>
-                Enable Weather Alerts
+                {{ _('Enable Weather Alerts') }}
             </label>
 
             <label>
                 <input type="checkbox" name="aqi_alert" value="1" {% if current_user.aqi_alert %}checked{% endif %}>
-                Enable AQI Alerts
+                {{ _('Enable AQI Alerts') }}
             </label>
 
-            <label for="aqi-threshold">AQI Alert Threshold:</label>
-            <input type="number" id="aqi-threshold" name="aqi_threshold" value="{{ current_user.aqi_threshold }}" placeholder="e.g. 150">
+            <label for="aqi-threshold">{{ _('AQI Alert Threshold') }}:</label>
+            <input type="number" id="aqi-threshold" name="aqi_threshold" value="{{ current_user.aqi_threshold }}" placeholder="{{ _('e.g. 150') }}">
 
-            <button type="submit" class="btn-save">Save Changes</button>
+            <button type="submit" class="btn-save">{{ _('Save Changes') }}</button>
         </div>
 
     </form>
 
     <div class="settings-card">
-        <h3>Account</h3>
+        <h3>{{ _('Account') }}</h3>
         <div class="button-group">
-            <a href="{{ url_for('change_password') }}" class="btn-password"><i class="bi bi-key-fill"></i> Change Password</a>
-            <a href="{{ url_for('delete') }}" class="btn-danger"><i class="bi bi-trash-fill"></i> Delete Account</a>
-            <a href="{{ url_for('logout') }}" class="btn-logout"><i class="bi bi-box-arrow-right"></i> Logout</a>
+            <a href="{{ url_for('change_password') }}" class="btn-password"><i class="bi bi-key-fill"></i> {{ _('Change Password') }}</a>
+            <a href="{{ url_for('delete') }}" class="btn-danger"><i class="bi bi-trash-fill"></i> {{ _('Delete Account') }}</a>
+            <a href="{{ url_for('logout') }}" class="btn-logout"><i class="bi bi-box-arrow-right"></i> {{ _('Logout') }}</a>
         </div>
     </div>
 

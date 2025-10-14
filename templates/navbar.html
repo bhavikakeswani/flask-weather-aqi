@@ -1,43 +1,49 @@
 <section class="navbar">
-        <div class="icon" id="menuBtn">
-            <i class="bi bi-grid-fill"></i>
-        </div>
-        <div class="menu" id="menuPanel">
-            <a href="{{url_for('dashboard')}}">Home</a>
-            <a href="{{url_for('forecast')}}">Forecast</a>
-            <a href="{{url_for('about')}}">About</a>
-            <a href="{{url_for('contact')}}">Contact</a>
-        </div>
-        <div class="icon">
-            <i class="bi bi-bell-fill"></i>
-        </div>
-        <div class="location">
-            <i id="geo-icon" class="bi bi-geo-alt-fill"></i>
-            <span id="loc-text">{{ city if city else current_user.default_city }}</span>
-        </div>
-        <div class="search-bar">
-            <i class="bi bi-search"></i>
-            <input type="text" placeholder="Search City">
-        </div>
-        <div class="toggle">
-            <label class="switch">
-                <input type="checkbox" id="themeToggle" {% if current_user.theme == 'Dark' %}checked{% endif %}>
-                <span class="slider">
-                    <i class="bi bi-brightness-high-fill sun"></i>
-                    <i class="bi bi-moon-fill moon"></i>
-                </span>
-            </label>
-        </div>
-        <div class="profile-picture" id="profileBtn">
-            <img src="{{ gravatar_url(current_user.email, size=36) }}" alt="Avatar" id="profile-img">
-        </div>
-        <div class="profile-menu" id="profilePanel">
-            <a href="{{url_for('profile')}}">Profile</a>
-            <a href="{{url_for('settings')}}">Settings</a>
-            <a href="{{url_for('logout')}}">Logout</a>
-        </div>
-    </section>
+    <div class="icon" id="menuBtn">
+        <i class="bi bi-grid-fill"></i>
+    </div>
 
+    <div class="menu" id="menuPanel">
+        <a href="{{ url_for('dashboard') }}">{{ _('Home') }}</a>
+        <a href="{{ url_for('forecast') }}">{{ _('Forecast') }}</a>
+        <a href="{{ url_for('about') }}">{{ _('About') }}</a>
+        <a href="{{ url_for('contact') }}">{{ _('Contact') }}</a>
+    </div>
+
+    <div class="icon">
+        <i class="bi bi-bell-fill"></i>
+    </div>
+
+    <div class="location">
+        <i id="geo-icon" class="bi bi-geo-alt-fill"></i>
+        <span id="loc-text">{{ city if city else current_user.default_city }}</span>
+    </div>
+
+    <div class="search-bar">
+        <i class="bi bi-search"></i>
+        <input type="text" placeholder="{{ _('Search City') }}">
+    </div>
+
+    <div class="toggle">
+        <label class="switch">
+            <input type="checkbox" id="themeToggle" {% if current_user.theme == 'Dark' %}checked{% endif %}>
+            <span class="slider">
+                <i class="bi bi-brightness-high-fill sun"></i>
+                <i class="bi bi-moon-fill moon"></i>
+            </span>
+        </label>
+    </div>
+
+    <div class="profile-picture" id="profileBtn">
+        <img src="{{ gravatar_url(current_user.email, size=36) }}" alt="Avatar" id="profile-img">
+    </div>
+
+    <div class="profile-menu" id="profilePanel">
+        <a href="{{ url_for('profile') }}">{{ _('Profile') }}</a>
+        <a href="{{ url_for('settings') }}">{{ _('Settings') }}</a>
+        <a href="{{ url_for('logout') }}">{{ _('Logout') }}</a>
+    </div>
+</section>
     {% block scripts %}
     <script>
         document.addEventListener("DOMContentLoaded", function() {

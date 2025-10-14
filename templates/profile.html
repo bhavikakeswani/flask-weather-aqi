@@ -1,58 +1,60 @@
 {% extends 'base.html' %}
 
-{% block title %}Forecast | SkySQI{% endblock %}
+{% block title %}{{ _('Profile') }} | SkySQI{% endblock %}
 
 {% block content %}
-
-    <main class="profile-container">
-        <h2>My Profile</h2>
-        
-        <section class="profile-card">
-            <img src="{{ gravatar_url(current_user.email, size=36) }}" alt="Avatar" class="profile-avatar">
-            <div class="profile-info">
-                <p><strong>Name:</strong> {{current_user.name}}</p>
-                <p><strong>Email:</strong> {{current_user.email}}</p>
-            </div>
-            <button id="editBtn" class="btn-edit"><i class="bi bi-pencil-square"></i> Edit Info</button>
-        </section>
-
-        <div id="editModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h3>Edit Profile Info</h3>
-                <form method="POST" action="{{ url_for('profile') }}">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" value="{{ current_user.name }}" required>
-
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" value="{{ current_user.email }}" required>
-
-                    <button type="submit" class="btn-save">Save Changes</button>
-                </form>
-            </div>
+<main class="profile-container">
+    <h2>{{ _('My Profile') }}</h2>
+    
+    <section class="profile-card">
+        <img src="{{ gravatar_url(current_user.email, size=36) }}" alt="{{ _('Avatar') }}" class="profile-avatar">
+        <div class="profile-info">
+            <p><strong>{{ _('Name') }}:</strong> {{ current_user.name }}</p>
+            <p><strong>{{ _('Email') }}:</strong> {{ current_user.email }}</p>
         </div>
+        <button id="editBtn" class="btn-edit">
+            <i class="bi bi-pencil-square"></i> {{ _('Edit Info') }}
+        </button>
+    </section>
 
-        <section class="preferences">
-            <h3>Preferences</h3>
-            <form method="POST" action="{{ url_for('update_preferences') }}">
-                <label for="city">Default City:</label>
-                <input type="text" id="city" name="default_city" placeholder="Enter city name" value="{{ current_user.default_city }}">
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>{{ _('Edit Profile Info') }}</h3>
+            <form method="POST" action="{{ url_for('profile') }}">
+                <label for="name">{{ _('Name') }}:</label>
+                <input type="text" id="name" name="name" value="{{ current_user.name }}" required autocomplete="off">
 
-                <label for="unit">Temperature Unit:</label>
-                <select id="unit" name="temp_unit">
-                    <option value="Celsius" {% if current_user.temp_unit == "Celsius" %}selected{% endif %}>Celsius (°C)</option>
-                    <option value="Fahrenheit" {% if current_user.temp_unit == "Fahrenheit" %}selected{% endif %}>Fahrenheit (°F)</option>
-                </select>
+                <label for="email">{{ _('Email') }}:</label>
+                <input type="email" id="email" name="email" value="{{ current_user.email }}" required autocomplete="off">
 
-                <label for="theme">Theme:</label>
-                <select id="theme" name="theme">
-                    <option value="Light" {% if current_user.theme == "Light" %}selected{% endif %}>Light</option>
-                    <option value="Dark" {% if current_user.theme == "Dark" %}selected{% endif %}>Dark</option>
-                </select>
-
-                <button type="submit" class="btn-save">Save Changes</button>
+                <button type="submit" class="btn-save">{{ _('Save Changes') }}</button>
             </form>
-        </section>
+        </div>
+    </div>
+
+    <section class="preferences">
+        <h3>{{ _('Preferences') }}</h3>
+        <form method="POST" action="{{ url_for('update_preferences') }}">
+            <label for="city">{{ _('Default City') }}:</label>
+            <input type="text" id="city" name="default_city" placeholder="{{ _('Enter city name') }}" value="{{ current_user.default_city }}" autocomplete="off">
+
+            <label for="unit">{{ _('Temperature Unit') }}:</label>
+            <select id="unit" name="temp_unit">
+                <option value="Celsius" {% if current_user.temp_unit == "Celsius" %}selected{% endif %}>{{ _('Celsius (°C)') }}</option>
+                <option value="Fahrenheit" {% if current_user.temp_unit == "Fahrenheit" %}selected{% endif %}>{{ _('Fahrenheit (°F)') }}</option>
+            </select>
+
+            <label for="theme">{{ _('Theme') }}:</label>
+            <select id="theme" name="theme">
+                <option value="Light" {% if current_user.theme == "Light" %}selected{% endif %}>{{ _('Light') }}</option>
+                <option value="Dark" {% if current_user.theme == "Dark" %}selected{% endif %}>{{ _('Dark') }}</option>
+            </select>
+
+            <button type="submit" class="btn-save">{{ _('Save Changes') }}</button>
+        </form>
+    </section>
+</main>
 {% endblock %}
 
 {% block scripts %}

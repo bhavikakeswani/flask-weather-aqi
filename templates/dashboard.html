@@ -1,21 +1,21 @@
 {% extends 'base.html' %}
 
-{% block title %}Dashboard | SkySQI{% endblock %}
+{% block title %}{{ _('Dashboard') }} | SkySQI{% endblock %}
 
 {% block content %}
 <main class="dashboard">
     <section class="forecast-toggle">
         <div class="tabs">
-            <button id="today-btn" class="active">Today</button>
-            <button id="tomorrow-btn">Tomorrow</button>
-            <button id="weekly-btn">Next 5 days</button>
+            <button id="today-btn" class="active">{{ _('Today') }}</button>
+            <button id="tomorrow-btn">{{ _('Tomorrow') }}</button>
+            <button id="weekly-btn">{{ _('Next 5 days') }}</button>
         </div>
         <div class="switch-wrapper">
             <label class="forecast-switch">
                 <input type="checkbox" id="toggle-forecast">
                 <span class="forecast-slider">
-                    <span class="on">Forecast</span>
-                    <span class="off">Air Quality</span>
+                    <span class="on">{{ _('Forecast') }}</span>
+                    <span class="off">{{ _('Air Quality') }}</span>
                 </span>
             </label>
         </div>
@@ -26,13 +26,13 @@
             <div class="temp-card">
                 {% if weather %}
                     <h2>{{ weather['main']['temp'] }} {{ unit_symbol }}</h2>
-                    <p>Real Feel {{ weather['main']['feels_like'] }} {{ unit_symbol }}</p>
-                    <p>Wind: {{ weather['wind']['speed'] }} {{ wind_unit }}</p>
-                    <p>Pressure: {{ weather['main']['pressure'] }} hPa</p>
-                    <p>Humidity: {{ weather['main']['humidity'] }}%</p>
-                    <p>Sunrise: {{ weather['sys']['sunrise'] | datetimeformat }} | Sunset: {{ weather['sys']['sunset'] | datetimeformat }}</p>
+                    <p>{{ _('Real Feel') }} {{ weather['main']['feels_like'] }} {{ unit_symbol }}</p>
+                    <p>{{ _('Wind') }}: {{ weather['wind']['speed'] }} {{ wind_unit }}</p>
+                    <p>{{ _('Pressure') }}: {{ weather['main']['pressure'] }} hPa</p>
+                    <p>{{ _('Humidity') }}: {{ weather['main']['humidity'] }}%</p>
+                    <p>{{ _('Sunrise') }}: {{ weather['sys']['sunrise'] | datetimeformat }} | {{ _('Sunset') }}: {{ weather['sys']['sunset'] | datetimeformat }}</p>
                 {% else %}
-                    <p>No weather data available.</p>
+                    <p>{{ _('No weather data available.') }}</p>
                 {% endif %}
             </div>
 
@@ -46,34 +46,27 @@
                 {% endfor %}
             </div>
             <div class="rain-chart">
-                <h3>Chance of Rain</h3>
+                <h3>{{ _('Chance of Rain') }}</h3>
                 <canvas id="rainChart"></canvas>
             </div>
         </div>
     </section>
 
     <section class="overview">
-        <div class="card">
-            Wind Status <br> {{ weather['wind']['speed'] }} {{ wind_unit }}
-        </div>
-        <div class="card">
-            UV Index <br>
+        <div class="card">{{ _('Wind Status') }} <br> {{ weather['wind']['speed'] }} {{ wind_unit }}</div>
+        <div class="card">{{ _('UV Index') }} <br>
             {% if uv_index is not none %}
                 {{ uv_index }}
             {% else %}
-                Not available
+                {{ _('Not available') }}
             {% endif %}
         </div>
-        <div class="card">
-            Humidity <br> {{ weather['main']['humidity'] }}%
-        </div>
-        <div class="card">
-            Visibility <br> {{ (weather['visibility'] / 1000) | round(1) }} km
-        </div>
+        <div class="card">{{ _('Humidity') }} <br> {{ weather['main']['humidity'] }}%</div>
+        <div class="card">{{ _('Visibility') }} <br> {{ (weather['visibility'] / 1000) | round(1) }} km</div>
     </section>
 
     <section class="explore">
-        <img src="{{ city_image or url_for('static', filename='images/fallback.jpg') }}" alt="City view">
+        <img src="{{ city_image or url_for('static', filename='images/fallback.jpg') }}" alt="{{ _('City view') }}">
     </section>
 
     <section class="other-cities">

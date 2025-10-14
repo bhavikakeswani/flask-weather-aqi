@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %}Forecast | SkySQI{% endblock %}
+{% block title %}{{ _('Forecast') }} | SkySQI{% endblock %}
 
 {% block content %}
 <main class="forecast-container">
-    <h1 class="forecast-heading">5-Day Weather & AQI Forecast</h1>
+    <h1 class="forecast-heading">{{ _('5-Day Weather & AQI Forecast') }}</h1>
 
     <div class="forecast-grid">
         {% for date, entries in forecast.items() %}
@@ -12,12 +12,12 @@
             <h2>{{ date }}</h2> 
             
             {% set first_entry = entries[0] %}
-            <img src="http://openweathermap.org/img/wn/{{ first_entry.weather[0].icon }}.png" alt="Weather icon">
+            <img src="http://openweathermap.org/img/wn/{{ first_entry.weather[0].icon }}.png" alt="{{ _('Weather icon') }}">
             
-            <p>Temp: {{ first_entry.main.temp }}° {{ 'C' if current_user.temp_unit == 'Celsius' else 'F' }}</p>
+            <p>{{ _('Temp') }}: {{ first_entry.main.temp }}° {{ _('C') if current_user.temp_unit == 'Celsius' else _('F') }}</p>
             
             {% if first_entry.aqi %}
-            <p>AQI: {{ first_entry.aqi.value }} ({{ first_entry.aqi.category }})</p>
+            <p>{{ _('AQI') }}: {{ first_entry.aqi.value }} ({{ first_entry.aqi.category }})</p>
             {% endif %}
         </div>
         {% endfor %}
