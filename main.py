@@ -189,7 +189,6 @@ def forecast():
 
 @app.template_filter("datetimeformat")
 def datetimeformat(value):
-    from datetime import datetime
     return datetime.fromtimestamp(value).strftime("%H:%M")
 
 @app.route('/login',methods=['GET','POST'])
