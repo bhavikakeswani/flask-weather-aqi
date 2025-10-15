@@ -7,6 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import Boolean, Integer, String, DateTime
 from weather_utils import get_weather, get_forecast,get_uv_index,get_city_image
 from collections import defaultdict
+from flask_babel import Babel, _
 from dotenv import load_dotenv
 from datetime import datetime
 from flask_mail import Mail, Message
@@ -21,6 +22,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///weather.db'
 db = SQLAlchemy(app)
 
 app.config['SECRET_KEY'] = os.getenv("FLASK_SECRET_KEY")
+app.config['BABEL_DEFAULT_LOCALE'] = 'en'
 MAIL_ID=os.getenv("MAIL_ID")
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
@@ -30,6 +32,18 @@ app.config['MAIL_PASSWORD'] = os.getenv("MAIL_PASSWORD")
 app.config['MAIL_DEFAULT_SENDER'] = ('SkySQI Contact', MAIL_ID)
 
 mail = Mail(app)
+
+def get_locale():
+    if current_user.is_authenticated:
+        lang_map = {
+            "English": "en",
+            "Hindi": "hi",
+            "French": "fr"
+        }
+        return lang_map.get(current_user.language, "en")
+    return "en"
+
+babel = Babel(app, locale_selector=get_locale)
 
 def gravatar_url(email, size=80, default="retro"):
     email_hash = hashlib.md5(email.strip().lower().encode("utf-8")).hexdigest()
@@ -189,10 +203,10 @@ def login():
                 login_user(user)
                 return redirect(url_for('dashboard'))
             else:
-                flash('Invalid password, Please try again.', 'danger')
+                flash(_('Invalid password, Please try again.'), 'danger')
                 return redirect(url_for('login'))
         else:
-            flash('Email not found. Please sign up first.', 'warning')
+            flash(_('Email not found. Please sign up first.'), 'warning')
             return redirect(url_for('register'))
     return render_template('login.html')
 
@@ -206,7 +220,7 @@ def register():
 
         existing_user = db.session.execute(db.select(User).where(User.email == email)).scalar_one_or_none()
         if existing_user:
-            flash("Email already registered. Please sign in.",'warning')
+            flash(_("Email already registered. Please sign in."),'warning')
             return redirect(url_for("login"))
         
         if confirm_password == password:
@@ -218,7 +232,7 @@ def register():
             login_user(new_user)
             return redirect(url_for('dashboard'))
         else:
-            flash("Passwords don't match",'danger')
+            flash(_("Passwords don't match"),'danger')
     return render_template('register.html')
 
 @app.route('/delete')
@@ -238,18 +252,18 @@ def change_password():
         confirm_password = request.form.get('confirm_password')
 
         if not check_password_hash(current_user.password, current_password):
-            flash("Current password is incorrect.", "danger")
+            flash(_("Current password is incorrect."), "danger")
             return redirect(url_for('change_password'))
 
         if new_password != confirm_password:
-            flash("New passwords do not match.", "warning")
+            flash(_("New passwords do not match."), "warning")
             return redirect(url_for('change_password'))
 
         hashed_password = generate_password_hash(new_password, method='pbkdf2:sha256', salt_length=8)
         current_user.password = hashed_password
         db.session.commit()
 
-        flash("Your password has been updated successfully!", "success")
+        flash(_("Your password has been updated successfully!"), "success")
         return redirect(url_for('dashboard'))
 
     return render_template('change_password.html')
