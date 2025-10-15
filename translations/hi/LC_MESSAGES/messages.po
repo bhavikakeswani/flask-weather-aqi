@@ -1,0 +1,776 @@
+# Hindi translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-10-14 22:17+0530\n"
+"PO-Revision-Date: 2025-10-14 22:17+0530\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: hi\n"
+"Language-Team: hi <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: main.py:206
+msgid "Invalid password, Please try again."
+msgstr "अमान्य पासवर्ड, कृपया पुनः प्रयास करें।"
+
+#: main.py:209
+msgid "Email not found. Please sign up first."
+msgstr "ईमेल नहीं मिला। कृपया पहले साइन अप करें।"
+
+#: main.py:223
+msgid "Email already registered. Please sign in."
+msgstr "ईमेल पहले से पंजीकृत है। कृपया साइन इन करें।"
+
+#: main.py:235
+msgid "Passwords don't match"
+msgstr "पासवर्ड मेल नहीं खाते।"
+
+#: main.py:255
+msgid "Current password is incorrect."
+msgstr "वर्तमान पासवर्ड गलत है।"
+
+#: main.py:259
+msgid "New passwords do not match."
+msgstr "नए पासवर्ड मेल नहीं खाते।"
+
+#: main.py:266
+msgid "Your password has been updated successfully!"
+msgstr "आपका पासवर्ड सफलतापूर्वक अपडेट हो गया है!"
+
+#: templates/about.html:3 templates/navbar.html:9
+msgid "About"
+msgstr "के बारे में"
+
+#: templates/about.html:8
+msgid "About SkySQI"
+msgstr "SkySQI के बारे में"
+
+#: templates/about.html:10
+msgid "SkySQI is a modern web application that provides"
+msgstr "SkySQI एक आधुनिक वेब एप्लिकेशन है जो प्रदान करता है"
+
+#: templates/about.html:11
+msgid "real-time weather"
+msgstr "रीयल-टाइम मौसम"
+
+#: templates/about.html:12 templates/about.html:16
+msgid "and"
+msgstr "और"
+
+#: templates/about.html:12
+msgid "Air Quality Index (AQI)"
+msgstr "वायु गुणवत्ता सूचकांक (AQI)"
+
+#: templates/about.html:13
+msgid ""
+"information for cities across the world. Our mission is to make "
+"environmental data accessible, interactive, and useful for everyone."
+msgstr "दुनिया भर के शहरों के लिए जानकारी। हमारा मिशन पर्यावरणीय डेटा को सभी के लिए सुलभ, इंटरैक्टिव और उपयोगी बनाना है।"
+
+#: templates/about.html:16
+msgid "Using trusted data sources such as"
+msgstr "विश्वसनीय डेटा स्रोतों का उपयोग करके जैसे कि"
+
+#: templates/about.html:17
+msgid ""
+"we bring you up-to-date insights on temperature, humidity, wind, UV "
+"index, and pollution levels."
+msgstr "हम आपको तापमान, आर्द्रता, हवा, UV सूचकांक और प्रदूषण स्तर पर नवीनतम जानकारी प्रदान करते हैं।"
+
+#: templates/about.html:22
+msgid "Our Mission"
+msgstr "हमारा मिशन"
+
+#: templates/about.html:24
+msgid ""
+"To help individuals, families, and communities make better decisions for "
+"their health and environment by providing accurate weather and air "
+"quality insights."
+msgstr "सटीक मौसम और वायु गुणवत्ता जानकारी प्रदान करके व्यक्तियों, परिवारों और समुदायों को उनके स्वास्थ्य और पर्यावरण के लिए बेहतर निर्णय लेने में मदद करना।"
+
+#: templates/about.html:29
+msgid "Our Team"
+msgstr "हमारी टीम"
+
+#: templates/about.html:31
+msgid ""
+"SkySQI is developed by a group of passionate developers and data "
+"enthusiasts who believe that technology can play a key role in"
+msgstr "SkySQI का विकास एक उत्साही डेवलपर्स और डेटा प्रेमियों के समूह द्वारा किया गया है, जो मानते हैं कि प्रौद्योगिकी एक महत्वपूर्ण भूमिका निभा सकती है"
+
+#: templates/about.html:31
+msgid "environmental awareness"
+msgstr "पर्यावरणीय जागरूकता"
+
+#: templates/about.html:36
+msgid "Why SkySQI?"
+msgstr "SkySQI क्यों?"
+
+#: templates/about.html:38
+msgid "Real-time weather and AQI updates"
+msgstr "रीयल-टाइम मौसम और AQI अपडेट्स"
+
+#: templates/about.html:39
+msgid "Easy-to-read charts and insights"
+msgstr "पढ़ने में आसान चार्ट और जानकारी"
+
+#: templates/about.html:40
+msgid "Smart alerts and notifications"
+msgstr "स्मार्ट अलर्ट और सूचनाएँ"
+
+#: templates/about.html:41
+msgid "Simple, modern, and responsive design"
+msgstr "सरल, आधुनिक और प्रतिक्रियाशील डिज़ाइन"
+
+#: templates/change_password.html:3 templates/settings.html:74
+msgid "Change Password"
+msgstr "पासवर्ड बदलें"
+
+#: templates/change_password.html:8
+msgid "Change Your Password"
+msgstr "अपना पासवर्ड बदलें"
+
+#: templates/change_password.html:10
+msgid "Update your password below. Make sure it’s strong and keep it secure."
+msgstr "नीचे अपना पासवर्ड अपडेट करें। सुनिश्चित करें कि यह मजबूत है और सुरक्षित रखें।"
+
+#: templates/change_password.html:24
+msgid "Current Password"
+msgstr "वर्तमान पासवर्ड"
+
+#: templates/change_password.html:29
+msgid "New Password"
+msgstr "नया पासवर्ड"
+
+#: templates/change_password.html:34
+msgid "Confirm New Password"
+msgstr "नए पासवर्ड की पुष्टि करें"
+
+#: templates/change_password.html:37
+msgid "Update Password"
+msgstr "पासवर्ड अपडेट करें"
+
+#: templates/contact.html:3 templates/navbar.html:10
+msgid "Contact"
+msgstr "संपर्क करें"
+
+#: templates/contact.html:9
+msgid "Get in Touch"
+msgstr "संपर्क में रहें"
+
+#: templates/contact.html:11
+msgid ""
+"Have questions, feedback, or suggestions? We’d love to hear from you. "
+"Fill out the form below and our team will get back to you shortly."
+msgstr "कोई प्रश्न, सुझाव या प्रतिक्रिया है? हमें आपसे सुनना पसंद है। नीचे फॉर्म भरें और हमारी टीम शीघ्र ही आपसे संपर्क करेगी।"
+
+#: templates/contact.html:25
+msgid "Your Name"
+msgstr "आपका नाम"
+
+#: templates/contact.html:29
+msgid "Your Email"
+msgstr "आपका ईमेल"
+
+#: templates/contact.html:33
+msgid "Subject"
+msgstr "विषय"
+
+#: templates/contact.html:37
+msgid "Your Message"
+msgstr "आपका संदेश"
+
+#: templates/contact.html:39
+msgid "Send Message"
+msgstr "संदेश भेजें"
+
+#: templates/dashboard.html:3
+msgid "Dashboard"
+msgstr "डैशबोर्ड"
+
+#: templates/dashboard.html:9
+msgid "Today"
+msgstr "आज"
+
+#: templates/dashboard.html:10
+msgid "Tomorrow"
+msgstr "कल"
+
+#: templates/dashboard.html:11
+msgid "Next 5 days"
+msgstr "अगले 5 दिन"
+
+#: templates/dashboard.html:17 templates/forecast.html:3
+#: templates/navbar.html:8
+msgid "Forecast"
+msgstr "पूर्वानुमान"
+
+#: templates/dashboard.html:18
+msgid "Air Quality"
+msgstr "वायु गुणवत्ता"
+
+#: templates/dashboard.html:29
+msgid "Real Feel"
+msgstr "असली अनुभव"
+
+#: templates/dashboard.html:30
+msgid "Wind"
+msgstr "हवा"
+
+#: templates/dashboard.html:31
+msgid "Pressure"
+msgstr "दबाव"
+
+#: templates/dashboard.html:32 templates/dashboard.html:64
+msgid "Humidity"
+msgstr "आर्द्रता"
+
+#: templates/dashboard.html:33
+msgid "Sunrise"
+msgstr "सूर्योदय"
+
+#: templates/dashboard.html:33
+msgid "Sunset"
+msgstr "सूर्यास्त"
+
+#: templates/dashboard.html:35
+msgid "No weather data available."
+msgstr "कोई मौसम डेटा उपलब्ध नहीं है।"
+
+#: templates/dashboard.html:49
+msgid "Chance of Rain"
+msgstr "बारिश की संभावना"
+
+#: templates/dashboard.html:56
+msgid "Wind Status"
+msgstr "हवा की स्थिति"
+
+#: templates/dashboard.html:57
+msgid "UV Index"
+msgstr "यूवी सूचकांक"
+
+#: templates/dashboard.html:61
+msgid "Not available"
+msgstr "उपलब्ध नहीं"
+
+#: templates/dashboard.html:65
+msgid "Visibility"
+msgstr "दृश्यता"
+
+#: templates/dashboard.html:69
+msgid "City view"
+msgstr "शहर दृश्य"
+
+#: templates/forecast.html:7
+msgid "5-Day Weather & AQI Forecast"
+msgstr "5-दिन का मौसम और AQI पूर्वानुमान"
+
+#: templates/forecast.html:15
+msgid "Weather icon"
+msgstr "मौसम आइकन"
+
+#: templates/forecast.html:17
+msgid "Temp"
+msgstr "तापमान"
+
+#: templates/forecast.html:17
+msgid "C"
+msgstr "°C"
+
+#: templates/forecast.html:17
+msgid "F"
+msgstr "°F"
+
+#: templates/forecast.html:20
+msgid "AQI"
+msgstr "AQI"
+
+#: templates/navbar.html:7
+msgid "Home"
+msgstr "होम"
+
+#: templates/navbar.html:24
+msgid "Search City"
+msgstr "शहर खोजें"
+
+#: templates/navbar.html:42 templates/profile.html:3
+msgid "Profile"
+msgstr "प्रोफ़ाइल"
+
+#: templates/navbar.html:43 templates/settings.html:3 templates/settings.html:8
+msgid "Settings"
+msgstr "सेटिंग्स"
+
+#: templates/navbar.html:44 templates/settings.html:76
+msgid "Logout"
+msgstr "लॉग आउट"
+
+#: templates/profile.html:7
+msgid "My Profile"
+msgstr "मेरी प्रोफ़ाइल"
+
+#: templates/profile.html:10
+msgid "Avatar"
+msgstr "अवतार"
+
+#: templates/profile.html:12 templates/profile.html:25
+msgid "Name"
+msgstr "नाम"
+
+#: templates/profile.html:13 templates/profile.html:28
+msgid "Email"
+msgstr "ईमेल"
+
+#: templates/profile.html:16
+msgid "Edit Info"
+msgstr "जानकारी संपादित करें"
+
+#: templates/profile.html:23
+msgid "Edit Profile Info"
+msgstr "प्रोफ़ाइल जानकारी संपादित करें"
+
+#: templates/profile.html:31 templates/profile.html:54
+#: templates/settings.html:66
+msgid "Save Changes"
+msgstr "परिवर्तन सहेजें"
+
+#: templates/profile.html:37
+msgid "Preferences"
+msgstr "प्राथमिकताएँ"
+
+#: templates/profile.html:39
+msgid "Default City"
+msgstr "डिफ़ॉल्ट शहर"
+
+#: templates/profile.html:40
+msgid "Enter city name"
+msgstr "शहर का नाम दर्ज करें"
+
+#: templates/profile.html:42 templates/settings.html:21
+msgid "Temperature Unit"
+msgstr "तापमान इकाई"
+
+#: templates/profile.html:44
+msgid "Celsius (°C)"
+msgstr "सेल्सियस (°C)"
+
+#: templates/profile.html:45
+msgid "Fahrenheit (°F)"
+msgstr "फारेनहाइट (°F)"
+
+#: templates/profile.html:48 templates/settings.html:36
+msgid "Theme"
+msgstr "थीम"
+
+#: templates/profile.html:50 templates/settings.html:38
+msgid "Light"
+msgstr "लाइट"
+
+#: templates/profile.html:51 templates/settings.html:39
+msgid "Dark"
+msgstr "डार्क"
+
+#: templates/settings.html:13
+msgid "App Preferences"
+msgstr "एप प्राथमिकताएँ"
+
+#: templates/settings.html:14
+msgid "Language"
+msgstr "भाषा"
+
+#: templates/settings.html:16
+msgid "English"
+msgstr "अंग्रेज़ी"
+
+#: templates/settings.html:17
+msgid "Hindi"
+msgstr "हिंदी"
+
+#: templates/settings.html:18
+msgid "French"
+msgstr "फ़्रेंच"
+
+#: templates/settings.html:23
+msgid "Celsius"
+msgstr "सेल्सियस"
+
+#: templates/settings.html:24
+msgid "Fahrenheit"
+msgstr "फारेनहाइट"
+
+#: templates/settings.html:27
+msgid "AQI Standard"
+msgstr "AQI मानक"
+
+#: templates/settings.html:29
+msgid "US AQI"
+msgstr "यूएस AQI"
+
+#: templates/settings.html:30
+msgid "WHO Standard"
+msgstr "WHO मानक"
+
+#: templates/settings.html:35
+msgid "Display"
+msgstr "डिस्प्ले"
+
+#: templates/settings.html:40
+msgid "Auto"
+msgstr "ऑटो"
+
+#: templates/settings.html:43
+msgid "Font Size"
+msgstr "फ़ॉन्ट आकार"
+
+#: templates/settings.html:45
+msgid "Small"
+msgstr "छोटा"
+
+#: templates/settings.html:46
+msgid "Medium"
+msgstr "मध्यम"
+
+#: templates/settings.html:47
+msgid "Large"
+msgstr "बड़ा"
+
+#: templates/settings.html:52
+msgid "Notifications"
+msgstr "सूचनाएँ"
+
+#: templates/settings.html:55
+msgid "Enable Weather Alerts"
+msgstr "मौसम अलर्ट सक्षम करें"
+
+#: templates/settings.html:60
+msgid "Enable AQI Alerts"
+msgstr "AQI अलर्ट सक्षम करें"
+
+#: templates/settings.html:63
+msgid "AQI Alert Threshold"
+msgstr "AQI अलर्ट सीमा"
+
+#: templates/settings.html:64
+msgid "e.g. 150"
+msgstr "जैसे 150"
+
+#: templates/settings.html:72
+msgid "Account"
+msgstr "खाता"
+
+#: templates/settings.html:75
+msgid "Delete Account"
+msgstr "खाता हटाएँ"
+
+#: venv/lib/python3.12/site-packages/click/_termui_impl.py:608
+#, python-brace-format
+msgid "{editor}: Editing failed"
+msgstr "{editor}: संपादन विफल रहा"
+
+#: venv/lib/python3.12/site-packages/click/_termui_impl.py:612
+#, python-brace-format
+msgid "{editor}: Editing failed: {e}"
+msgstr "{editor}: संपादन विफल रहा: {e}"
+
+#: venv/lib/python3.12/site-packages/click/core.py:1104
+#: venv/lib/python3.12/site-packages/click/core.py:1141
+#, python-brace-format
+msgid "{text} {deprecated_message}"
+msgstr "{text} {deprecated_message}"
+
+#: venv/lib/python3.12/site-packages/click/core.py:1160
+msgid "Options"
+msgstr "विकल्प"
+
+#: venv/lib/python3.12/site-packages/click/core.py:1222
+#, python-brace-format
+msgid "Got unexpected extra argument ({args})"
+msgid_plural "Got unexpected extra arguments ({args})"
+msgstr[0] "अनपेक्षित अतिरिक्त तर्क मिला ({args})"
+msgstr[1] "अनपेक्षित अतिरिक्त तर्क मिले ({args})"
+
+#: venv/lib/python3.12/site-packages/click/core.py:1241
+#, python-brace-format
+msgid "DeprecationWarning: The command {name!r} is deprecated.{extra_message}"
+msgstr "DeprecationWarning: कमांड {name!r} अब अप्रचलित है।{extra_message}"
+
+#: venv/lib/python3.12/site-packages/click/core.py:1425
+msgid "Aborted!"
+msgstr "रद्द किया गया!"
+
+#: venv/lib/python3.12/site-packages/click/core.py:1799
+msgid "Commands"
+msgstr "कमांड"
+
+#: venv/lib/python3.12/site-packages/click/core.py:1830
+msgid "Missing command."
+msgstr "कमांड गायब है।"
+
+#: venv/lib/python3.12/site-packages/click/core.py:1908
+#, python-brace-format
+msgid "No such command {name!r}."
+msgstr "ऐसा कोई कमांड नहीं है: {name!r}।"
+
+#: venv/lib/python3.12/site-packages/click/core.py:2332
+msgid "Value must be an iterable."
+msgstr "मान एक iterable होना चाहिए।"
+
+#: venv/lib/python3.12/site-packages/click/core.py:2355
+#, python-brace-format
+msgid "Takes {nargs} values but 1 was given."
+msgid_plural "Takes {nargs} values but {len} were given."
+msgstr[0] "{nargs} मान अपेक्षित थे, लेकिन 1 दिया गया।"
+msgstr[1] "{nargs} मान अपेक्षित थे, लेकिन {len} दिए गए।"
+
+#: venv/lib/python3.12/site-packages/click/core.py:2505
+#, python-brace-format
+msgid "DeprecationWarning: The {param_type} {name!r} is deprecated.{extra_message}"
+msgstr "DeprecationWarning: {param_type} {name!r} अब अप्रचलित है।{extra_message}"
+
+#: venv/lib/python3.12/site-packages/click/core.py:2956
+#, python-brace-format
+msgid "env var: {var}"
+msgstr "पर्यावरण चर: {var}"
+
+#: venv/lib/python3.12/site-packages/click/core.py:2959
+#, python-brace-format
+msgid "default: {default}"
+msgstr "डिफ़ॉल्ट: {default}"
+
+#: venv/lib/python3.12/site-packages/click/core.py:2963
+msgid "required"
+msgstr "अनिवार्य"
+
+#: venv/lib/python3.12/site-packages/click/core.py:3023
+msgid "(dynamic)"
+msgstr "(डायनामिक)"
+
+#: venv/lib/python3.12/site-packages/click/decorators.py:465
+#, python-format
+msgid "%(prog)s, version %(version)s"
+msgstr "%(prog)s, संस्करण %(version)s"
+
+#: venv/lib/python3.12/site-packages/click/decorators.py:522
+msgid "Show the version and exit."
+msgstr "संस्करण दिखाएँ और बाहर निकलें।"
+
+#: venv/lib/python3.12/site-packages/click/decorators.py:548
+msgid "Show this message and exit."
+msgstr "यह संदेश दिखाएँ और बाहर निकलें।"
+
+#: venv/lib/python3.12/site-packages/click/exceptions.py:50
+#: venv/lib/python3.12/site-packages/click/exceptions.py:89
+#, python-brace-format
+msgid "Error: {message}"
+msgstr "त्रुटि: {message}"
+
+#: venv/lib/python3.12/site-packages/click/exceptions.py:81
+#, python-brace-format
+msgid "Try '{command} {option}' for help."
+msgstr "सहायता के लिए '{command} {option}' आज़माएँ।"
+
+#: venv/lib/python3.12/site-packages/click/exceptions.py:130
+#, python-brace-format
+msgid "Invalid value: {message}"
+msgstr "अमान्य मान: {message}"
+
+#: venv/lib/python3.12/site-packages/click/exceptions.py:132
+#, python-brace-format
+msgid "Invalid value for {param_hint}: {message}"
+msgstr "{param_hint} के लिए अमान्य मान: {message}"
+
+#: venv/lib/python3.12/site-packages/click/exceptions.py:190
+msgid "Missing argument"
+msgstr "तर्क गायब है"
+
+#: venv/lib/python3.12/site-packages/click/exceptions.py:192
+msgid "Missing option"
+msgstr "विकल्प गायब है"
+
+#: venv/lib/python3.12/site-packages/click/exceptions.py:194
+msgid "Missing parameter"
+msgstr "पैरामीटर गायब है"
+
+#: venv/lib/python3.12/site-packages/click/exceptions.py:196
+#, python-brace-format
+msgid "Missing {param_type}"
+msgstr "गायब {param_type}"
+
+#: venv/lib/python3.12/site-packages/click/exceptions.py:203
+#, python-brace-format
+msgid "Missing parameter: {param_name}"
+msgstr "गायब पैरामीटर: {param_name}"
+
+#: venv/lib/python3.12/site-packages/click/exceptions.py:223
+#, python-brace-format
+msgid "No such option: {name}"
+msgstr "ऐसा कोई विकल्प नहीं है: {name}"
+
+#: venv/lib/python3.12/site-packages/click/exceptions.py:235
+#, python-brace-format
+msgid "Did you mean {possibility}?"
+msgid_plural "(Possible options: {possibilities})"
+msgstr[0] "क्या आपका मतलब {possibility} था?"
+msgstr[1] "(संभावित विकल्प: {possibilities})"
+
+#: venv/lib/python3.12/site-packages/click/exceptions.py:282
+msgid "unknown error"
+msgstr "अज्ञात त्रुटि"
+
+#: venv/lib/python3.12/site-packages/click/exceptions.py:289
+#, python-brace-format
+msgid "Could not open file {filename!r}: {message}"
+msgstr "फ़ाइल {filename!r} नहीं खोल सका: {message}"
+
+#: venv/lib/python3.12/site-packages/click/formatting.py:156
+msgid "Usage:"
+msgstr "उपयोग:"
+
+#: venv/lib/python3.12/site-packages/click/parser.py:199
+#, python-brace-format
+msgid "Argument {name!r} takes {nargs} values."
+msgstr "तर्क {name!r} को {nargs} मान चाहिए।"
+
+#: venv/lib/python3.12/site-packages/click/parser.py:381
+#, python-brace-format
+msgid "Option {name!r} does not take a value."
+msgstr "विकल्प {name!r} कोई मान नहीं लेता।"
+
+#: venv/lib/python3.12/site-packages/click/parser.py:444
+#, python-brace-format
+msgid "Option {name!r} requires an argument."
+msgid_plural "Option {name!r} requires {nargs} arguments."
+msgstr[0] "विकल्प {name!r} को एक तर्क चाहिए।"
+msgstr[1] "विकल्प {name!r} को {nargs} तर्क चाहिए।"
+
+#: venv/lib/python3.12/site-packages/click/shell_completion.py:332
+msgid "Shell completion is not supported for Bash versions older than 4.4."
+msgstr "Bash के 4.4 से पुराने संस्करणों के लिए शेल कंप्लीशन समर्थित नहीं है।"
+
+#: venv/lib/python3.12/site-packages/click/shell_completion.py:339
+msgid "Couldn't detect Bash version, shell completion is not supported."
+msgstr "Bash संस्करण का पता नहीं चल सका, शेल कंप्लीशन समर्थित नहीं है।"
+
+#: venv/lib/python3.12/site-packages/click/termui.py:162
+msgid "Repeat for confirmation"
+msgstr "पुष्टि के लिए दोहराएँ"
+
+#: venv/lib/python3.12/site-packages/click/termui.py:178
+msgid "Error: The value you entered was invalid."
+msgstr "त्रुटि: आपने जो मान डाला वह अमान्य है।"
+
+#: venv/lib/python3.12/site-packages/click/termui.py:180
+#, python-brace-format
+msgid "Error: {e.message}"
+msgstr "त्रुटि: {e.message}"
+
+#: venv/lib/python3.12/site-packages/click/termui.py:191
+msgid "Error: The two entered values do not match."
+msgstr "त्रुटि: दोनों दर्ज किए गए मान मेल नहीं खाते।"
+
+#: venv/lib/python3.12/site-packages/click/termui.py:247
+msgid "Error: invalid input"
+msgstr "त्रुटि: अमान्य इनपुट"
+
+#: venv/lib/python3.12/site-packages/click/termui.py:866
+msgid "Press any key to continue..."
+msgstr "जारी रखने के लिए कोई भी कुंजी दबाएँ..."
+
+#: venv/lib/python3.12/site-packages/click/types.py:332
+#, python-brace-format
+msgid ""
+"Choose from:\n"
+"\t{choices}"
+msgstr "इनमें से चुनें:\n\t{choices}"
+
+#: venv/lib/python3.12/site-packages/click/types.py:369
+#, python-brace-format
+msgid "{value!r} is not {choice}."
+msgid_plural "{value!r} is not one of {choices}."
+msgstr[0] "{value!r} {choice} नहीं है।"
+msgstr[1] "{value!r} में से कोई नहीं है: {choices}।"
+
+#: venv/lib/python3.12/site-packages/click/types.py:460
+#, python-brace-format
+msgid "{value!r} does not match the format {format}."
+msgid_plural "{value!r} does not match the formats {formats}."
+msgstr[0] "{value!r} प्रारूप {format} से मेल नहीं खाता।"
+msgstr[1] "{value!r} किसी भी प्रारूप {formats} से मेल नहीं खाता।"
+
+#: venv/lib/python3.12/site-packages/click/types.py:482
+#, python-brace-format
+msgid "{value!r} is not a valid {number_type}."
+msgstr "{value!r} एक मान्य {number_type} नहीं है।"
+
+#: venv/lib/python3.12/site-packages/click/types.py:538
+#, python-brace-format
+msgid "{value} is not in the range {range}."
+msgstr "{value} सीमा {range} में नहीं है।"
+
+#: venv/lib/python3.12/site-packages/click/types.py:719
+#, python-brace-format
+msgid "{value!r} is not a valid boolean. Recognized values: {states}"
+msgstr "{value!r} एक मान्य boolean नहीं है। मान्यता प्राप्त मान: {states}"
+
+#: venv/lib/python3.12/site-packages/click/types.py:747
+#, python-brace-format
+msgid "{value!r} is not a valid UUID."
+msgstr "{value!r} एक मान्य UUID नहीं है।"
+
+#: venv/lib/python3.12/site-packages/click/types.py:937
+msgid "file"
+msgstr "फ़ाइल"
+
+#: venv/lib/python3.12/site-packages/click/types.py:939
+msgid "directory"
+msgstr "निर्देशिका"
+
+#: venv/lib/python3.12/site-packages/click/types.py:941
+msgid "path"
+msgstr "पथ"
+
+#: venv/lib/python3.12/site-packages/click/types.py:988
+#, python-brace-format
+msgid "{name} {filename!r} does not exist."
+msgstr "{name} {filename!r} अस्तित्व में नहीं है।"
+
+#: venv/lib/python3.12/site-packages/click/types.py:997
+#, python-brace-format
+msgid "{name} {filename!r} is a file."
+msgstr "{name} {filename!r} एक फ़ाइल है।"
+
+#: venv/lib/python3.12/site-packages/click/types.py:1005
+#, python-brace-format
+msgid "{name} {filename!r} is a directory."
+msgstr "{name} {filename!r} एक निर्देशिका है।"
+
+#: venv/lib/python3.12/site-packages/click/types.py:1014
+#, python-brace-format
+msgid "{name} {filename!r} is not readable."
+msgstr "{name} {filename!r} पढ़ने योग्य नहीं है।"
+
+#: venv/lib/python3.12/site-packages/click/types.py:1023
+#, python-brace-format
+msgid "{name} {filename!r} is not writable."
+msgstr "{name} {filename!r} लिखने योग्य नहीं है।"
+
+#: venv/lib/python3.12/site-packages/click/types.py:1032
+#, python-brace-format
+msgid "{name} {filename!r} is not executable."
+msgstr "{name} {filename!r} निष्पादन योग्य नहीं है।"
+
+#: venv/lib/python3.12/site-packages/click/types.py:1099
+#, python-brace-format
+msgid "{len_type} values are required, but {len_value} was given."
+msgid_plural "{len_type} values are required, but {len_value} were given."
+msgstr[0] "{len_type} मान आवश्यक हैं, लेकिन {len_value} दिया गया।"
+msgstr[1] "{len_type} मान आवश्यक हैं, लेकिन {len_value} दिए गए।"
