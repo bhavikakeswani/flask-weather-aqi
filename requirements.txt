@@ -1,0 +1,9 @@
+Flask
+Flask-SQLAlchemy
+Flask-Login
+Flask-Babel
+Flask-Mail
+python-dotenv
+requests
+Werkzeug
+SQLAlchemy
