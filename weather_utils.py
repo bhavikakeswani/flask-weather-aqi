@@ -48,3 +48,28 @@ def get_city_image(city):
     if r.status_code == 200 and r.json()["results"]:
         return r.json()["results"][0]["urls"]["regular"]
     return None
+
+def get_air_quality(lat, lon):
+    """Fetch current air quality index for given coordinates."""
+    url = f"{BASE_URL}/air_pollution?lat={lat}&lon={lon}&appid={API_KEY}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        if data.get("list"):
+            return data["list"][0]["main"]["aqi"]
+    return None
+
+def aqi_category(aqi):
+    """Convert numeric AQI (1–5) to descriptive label."""
+    if aqi is None:
+        return "Not available"
+    if aqi == 1:
+        return "Good"
+    elif aqi == 2:
+        return "Fair"
+    elif aqi == 3:
+        return "Moderate"
+    elif aqi == 4:
+        return "Poor"
+    else:  
+        return "Very Poor"
