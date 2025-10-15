@@ -52,7 +52,7 @@
         </div>
     </section>
 
-    <section class="overview">
+    <section class="overview" id="overviewSection">
         <div class="card">{{ _('Wind Status') }} <br> {{ weather['wind']['speed'] }} {{ wind_unit }}</div>
         <div class="card">{{ _('UV Index') }} <br>
             {% if uv_index is not none %}
@@ -60,6 +60,9 @@
             {% else %}
                 {{ _('Not available') }}
             {% endif %}
+        </div>
+        <div class="card" id="aqiCard" style="display:none;">
+            {{ _('Air Quality') }} <br> {{ aqi_label }}
         </div>
         <div class="card">{{ _('Humidity') }} <br> {{ weather['main']['humidity'] }}%</div>
         <div class="card">{{ _('Visibility') }} <br> {{ (weather['visibility'] / 1000) | round(1) }} km</div>
@@ -87,6 +90,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const todayBtn = document.getElementById("today-btn");
     const tomorrowBtn = document.getElementById("tomorrow-btn");
     const weeklyBtn = document.getElementById("weekly-btn");
+    const toggleForecast = document.getElementById("toggle-forecast");
+    const aqiCard = document.getElementById("aqiCard");
 
     const weeklyForecast = JSON.parse(`{{ weekly_forecast | tojson | safe }}`);
     const tomorrowForecast = JSON.parse(`{{ tomorrow_forecast | tojson | safe }}`);
@@ -164,6 +169,10 @@ document.addEventListener("DOMContentLoaded", function() {
         todayBtn.classList.remove("active");
         tomorrowBtn.classList.remove("active");
         weeklyBtn.classList.add("active");
+    });
+
+    toggleForecast.addEventListener("change", function() {
+        aqiCard.style.display = toggleForecast.checked ? "block" : "none";
     });
 
     renderForecast([weeklyForecast[0]]);

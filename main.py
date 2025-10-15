@@ -5,7 +5,7 @@ from flask_login import UserMixin, login_user, LoginManager, current_user, logou
 from sqlalchemy.orm import Mapped, mapped_column
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import Boolean, Integer, String, DateTime
-from weather_utils import get_weather, get_forecast,get_uv_index,get_city_image
+from weather_utils import get_weather, get_forecast,get_uv_index,get_city_image,get_air_quality,aqi_category
 from collections import defaultdict
 from flask_babel import Babel, _
 from dotenv import load_dotenv
@@ -110,10 +110,14 @@ def dashboard():
                 "temp": data["main"]["temp"]
             })
 
-    uv_index = None
+    aqi_index = None
+    aqi_label = None
     if weather and "coord" in weather:
         lat, lon = weather["coord"]["lat"], weather["coord"]["lon"]
         uv_index = get_uv_index(lat, lon)
+        aqi_index = get_air_quality(lat, lon)
+        aqi_label = aqi_category(aqi_index)
+
 
     forecast_data = get_forecast(city, units)
     weekly_forecast = []
@@ -159,6 +163,7 @@ def dashboard():
         tomorrow_forecast=tomorrow_forecast,
         next_days_forecast=next_days_forecast,
         uv_index=uv_index,
+        aqi_label=aqi_label,
         other_cities_weather=other_cities_weather,
         city_image=city_image,
         city=city,
